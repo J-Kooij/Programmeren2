@@ -1,5 +1,7 @@
 package Programmeren2.Domain;
 
-public enum Status {
-    
+enum Status {
+    CONCEPT,
+    ACTIVE,
+    ARCHIVED
 }
