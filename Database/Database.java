@@ -6,21 +6,17 @@ import java.sql.*;
  * Dit is een voorbeeld Java toepassing waarin je verbinding maakt met een SQLServer database.
  */
 public class Database {
+    protected Connection connection;
 
-    // public void getConnection() {
-        public static void main(String[] args) {
-        
-        
         //initialize connection with database
+        public Database() {
         String connectionUrl = "jdbc:sqlserver://localhost;databaseName=ccdatabase;integratedSecurity=true;";
-
-        Connection connection = null;
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-            connection = DriverManager.getConnection(connectionUrl);
-            System.out.println("connected!");
+            this.connection = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected to the database.");
     
         }
         catch (Exception e) {
