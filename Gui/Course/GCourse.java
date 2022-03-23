@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class GCourse {
     public static void showWindow(Stage window){
-        ArrayList<Course> courses;
+        ArrayList<GCourse> courses;
 
         window.setTitle("CodeCademy | Courses");
         VBox vLayout = new VBox();

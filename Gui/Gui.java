@@ -1,7 +1,7 @@
 package Programmeren2.Gui;
 
 import Programmeren2.Domain.Student;
-import Programmeren2.Gui.Course.Course;
+import Programmeren2.Gui.Course.GCourse;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
