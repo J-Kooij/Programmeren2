@@ -6,10 +6,10 @@ public class Course {
     private String courseName;
     private String subject;
     private String introductionText;
-    private Difficulty difficulty;
+    private String difficulty;
     private ArrayList<Course> recommendedCourses;
 
-    public Course(String courseName, String subject, String introductionText, Difficulty difficulty, ArrayList<Course> recommendedCourses) {
+    public Course(String courseName, String subject, String introductionText, String difficulty, ArrayList<Course> recommendedCourses) {
         this.courseName = courseName;
         this.subject = subject;
         this.introductionText = introductionText;
@@ -41,11 +41,11 @@ public class Course {
         this.introductionText = introductionText;
     }
 
-    public Difficulty getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 
