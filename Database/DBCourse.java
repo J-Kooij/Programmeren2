@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 
 import Programmeren2.Domain.Course;
 
-public class DBCourse {
+public class DBCourse extends Database{
 
     public DBCourse(){
         super();
@@ -14,7 +14,7 @@ public class DBCourse {
 
         // Create prepared statement
         String query = "INSERT INTO Course VALUES(?, ?, ?, ?)";
-        try (PreparedStatement stmt = super.Connection.prepareStatement(query)) {
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
             // Set data in prepared statement
             stmt.setString(1, course.getCourseName());
             stmt.setString(2, course.getSubject());
@@ -22,9 +22,7 @@ public class DBCourse {
             stmt.setString(4, course.getDifficulty());
             // Execute statement
             stmt.executeUpdate();
-
-            // return true on success
-            return true;
+            
         } catch (Exception e) {
             System.out.format("Error while creating Course (createCourse): %s", e.toString());
         }
