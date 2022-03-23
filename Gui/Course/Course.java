@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Course {
-    public static void showCourse(Stage window){
+    public static void showWindow(Stage window){
         ArrayList<Course> courses;
 
         window.setTitle("CodeCademy | Courses");
@@ -49,10 +49,30 @@ public class Course {
         tableView.getSortOrder().add(column1);
         
         HBox buttons = new HBox();
-        Button createButton = new Button();
-        Button editButton = new Button();
-        Button deleteButton = new Button();
-        Scene scene = new Scene(tableView);
+        buttons.setSpacing(10);
+        Button createButton = new Button("Create");
+        Button editButton = new Button("Edit");
+        Button deleteButton = new Button("Delete");
+
+        createButton.setOnAction((event) -> {
+            CreateCourse.showWindow(window);
+        });
+
+        editButton.setOnAction((event) -> {
+            EditCourse.showWindow(window);
+        });
+
+        editButton.setOnAction((event) -> {
+            //TODO Delete function
+        });
+
+
+        buttons.getChildren().addAll(createButton, editButton, deleteButton);
+
+        vLayout.getChildren().addAll(tableView, buttons);
+
+
+        Scene scene = new Scene(vLayout);
         window.setScene(scene);
         window.show();
     }

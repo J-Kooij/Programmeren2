@@ -51,8 +51,8 @@ public class Gui extends Application {
         window.setScene(scene);
         window.show();
 
-        vStudentButton.setOnAction((event) -> {
-            Course.showCourse(window);
+        vCoursesButton.setOnAction((event) -> {
+            Course.showWindow(window);
         });
 
         // -------------------------------------------------------------------
