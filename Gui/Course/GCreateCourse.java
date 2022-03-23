@@ -1,4 +1,4 @@
-package Programmeren2.Gui;
+package Programmeren2.Gui.Course;
 
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Course.Course;
@@ -17,12 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Gui extends Application {
 
-    @Override
-    public void start(Stage window) throws Exception {
+public class GCreateCourse {
 
-        // HomePagelayout-------------------------------------------------------------------
+    public static void showWindow(Stage window) {
+
         window.setTitle("CodeCademy by Jonah[2191148]&Tony[2182138]");
         BorderPane layout = new BorderPane();
         layout.setPrefSize(500, 200);
@@ -31,16 +30,16 @@ public class Gui extends Application {
         VBox mLayout = new VBox();
         mLayout.setAlignment(Pos.CENTER);
 
-        Label welcome = new Label("Welcome");
-        welcome.setFont(new Font("Arial", 30));
+        Label welcome = new Label("Create Course");
+        welcome.setFont(new Font("Arial", 45));
         mLayout.setMargin(welcome, new Insets(0, 0, 50, 0));
 
         HBox buttons = new HBox();
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(10);
 
-        Button vStudentButton = new Button("View Students");
-        Button vCoursesButton = new Button("View Courses");
+        // Button vStudentButton = new Button("View Students");
+        // Button vCoursesButton = new Button("View Courses");
 
         buttons.getChildren().addAll(vStudentButton, vCoursesButton);
         mLayout.getChildren().addAll(welcome, buttons);
@@ -49,27 +48,6 @@ public class Gui extends Application {
         //Show HomePage
         Scene scene = new Scene(layout);
         window.setScene(scene);
-        window.show();
-
-        vCoursesButton.setOnAction((event) -> {
-            GCourse.showWindow(window);
-        });
-
-        // -------------------------------------------------------------------
-
-
-
-        // GetItem------------------------------------------------------------------------------------------------------------
-
-        // test.setOnAction((event)-> {
-        // Object word= ((TableColumn<Student, String>)
-        // tableView.getColumns().get(1)).getCellObservableValue(0).getValue();
-        // System.out.println(word);
-        // });
-
-        // --------------------------------------------------------------------------------------------------------------------
-
-
     }
 
 }
