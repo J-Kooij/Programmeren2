@@ -1,5 +1,7 @@
 package Programmeren2.Domain;
 
+import java.util.ArrayList;
+
 public class Course {
     private String courseName;
     private String subject;
