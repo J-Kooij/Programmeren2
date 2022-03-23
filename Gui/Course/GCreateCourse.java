@@ -48,7 +48,6 @@ public class GCreateCourse {
         Label introTxt = new Label("Introduction text:...");
         TextArea introTxtTF = new TextArea();
 
-
         //Course difficulty 
         Label difficulty = new Label("Difficulty:...");
         ComboBox<String> diffCombobox = new ComboBox<>();
@@ -62,5 +61,4 @@ public class GCreateCourse {
         Scene scene = new Scene(layout);
         window.setScene(scene);
     }
-
 }
