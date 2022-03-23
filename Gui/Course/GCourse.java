@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Course {
+public class GCourse {
     public static void showWindow(Stage window){
         ArrayList<Course> courses;
 
@@ -55,11 +55,11 @@ public class Course {
         Button deleteButton = new Button("Delete");
 
         createButton.setOnAction((event) -> {
-            CreateCourse.showWindow(window);
+            GCreateCourse.showWindow(window);
         });
 
         editButton.setOnAction((event) -> {
-            EditCourse.showWindow(window);
+            GEditCourse.showWindow(window);
         });
 
         editButton.setOnAction((event) -> {
@@ -74,7 +74,6 @@ public class Course {
 
         Scene scene = new Scene(vLayout);
         window.setScene(scene);
-        window.show();
     }
     
 }
