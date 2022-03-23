@@ -1,16 +1,20 @@
 package Programmeren2.Gui;
 
 import Programmeren2.Domain.Student;
+import Programmeren2.Gui.Course.Course;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Gui extends Application {
@@ -18,35 +22,42 @@ public class Gui extends Application {
     @Override
     public void start(Stage window) throws Exception {
 
-        // Main layout-------------------------------------------------------------------
-
+        // HomePagelayout-------------------------------------------------------------------
+        window.setTitle("CodeCademy by Jonah[2191148]&Tony[2182138]");
         BorderPane layout = new BorderPane();
         layout.setPrefSize(500, 200);
         layout.setPadding(new Insets(10));
+
+        VBox mLayout = new VBox();
+        mLayout.setAlignment(Pos.CENTER);
+
+        Label welcome = new Label("Welcome");
+        welcome.setFont(new Font("Arial", 30));
+        mLayout.setMargin(welcome, new Insets(0, 0, 50, 0));
 
         HBox buttons = new HBox();
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(10);
 
-        Button createButton = new Button("Create");
-        Button updateButton = new Button("Update");
-        Button deleteButton = new Button("Delete");
-        // Button test = new Button("test");
+        Button vStudentButton = new Button("View Students");
+        Button vCoursesButton = new Button("View Courses");
 
-        buttons.getChildren().addAll(createButton, updateButton, deleteButton);
+        buttons.getChildren().addAll(vStudentButton, vCoursesButton);
+        mLayout.getChildren().addAll(welcome, buttons);
+        layout.setCenter(mLayout);
 
-        layout.setTop(buttons);
+        //Show HomePage
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.show();
 
-        TableView tableView = new TableView();
+        vStudentButton.setOnAction((event) -> {
+            Course.showCourse(window);
+        });
 
-        TableColumn<String, String> column1 = new TableColumn<>("First Name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        // -------------------------------------------------------------------
 
-        TableColumn<String, String> column2 = new TableColumn<>("Last Name");
-        column2.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
 
         // GetItem------------------------------------------------------------------------------------------------------------
 
@@ -57,17 +68,8 @@ public class Gui extends Application {
         // });
 
         // --------------------------------------------------------------------------------------------------------------------
-        tableView.getItems().add(new Student("John", "Doe", "John", "Doe", "John", "Doe", "John", "Doe", 1));
-        tableView.getItems().add(new Student("apehn", "anoe", "John", "Doe", "John", "Doe", "John", "Doe", 1));
-        column1.setSortType(TableColumn.SortType.ASCENDING);
-        tableView.getSortOrder().add(column1);
 
-        layout.setCenter(tableView);
-        Scene scene = new Scene(layout);
 
-        window.setScene(scene);
-        window.setTitle("CodeCademy Management");
-        window.show();
     }
 
 }
