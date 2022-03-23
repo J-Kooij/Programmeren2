@@ -7,57 +7,29 @@ import java.sql.*;
  */
 public class Database {
 
-    public static void main(String[] args) {
+    // public void getConnection() {
+        public static void main(String[] args) {
         
+        
+        //initialize connection with database
+        String connectionUrl = "jdbc:sqlserver://localhost;databaseName=ccdatabase;integratedSecurity=true;";
 
-        // Dit zijn de instellingen voor de verbinding. Vervang de databaseName indien deze voor jou anders is.
-        String connectionUrl = "jdbc:sqlserver://localhost;databaseName=Bibliotheek;integratedSecurity=true;";
-
-        // Connection beheert informatie over de connectie met de database.
-        Connection con = null;
-
-        // Statement zorgt dat we een SQL query kunnen uitvoeren.
-        Statement stmt = null;
-
-        // ResultSet is de tabel die we van de database terugkrijgen.
-        // We kunnen door de rows heen stappen en iedere kolom lezen.
-        ResultSet rs = null;
+        Connection connection = null;
 
         try {
-            // 'Importeer' de driver die je gedownload hebt.
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            // Maak de verbinding met de database.
-            con = DriverManager.getConnection(connectionUrl);
 
-
-            String SQL = "SELECT TOP 10 * FROM Boek";
-            stmt = con.createStatement();
-   
-            rs = stmt.executeQuery(SQL);
-
-            System.out.print(String.format("| %7s | %-32s | %-24s |\n", " ", " ", " ").replace(" ", "-"));
-
-     
-            while (rs.next()) {
-       
-                int ISBN = rs.getInt("ISBN");
-                String title = rs.getString("Titel");
-                String author = rs.getString("Auteur");
-
-                System.out.format("| %7d | %-32s | %-24s | \n", ISBN, title, author);
-            }
-            System.out.println(String.format("| %7s | %-32s | %-24s |\n", " ", " ", " ").replace(" ", "-"));
-
+            connection = DriverManager.getConnection(connectionUrl);
+            System.out.println("connected!");
     
         }
-        // Handle any errors that may have occurred.
         catch (Exception e) {
+            System.out.println("Could not connect to database.");
             e.printStackTrace();
         }
+
         finally {
-            if (rs != null) try { rs.close(); } catch(Exception e) {}
-            if (stmt != null) try { stmt.close(); } catch(Exception e) {}
-            if (con != null) try { con.close(); } catch(Exception e) {}
+            if (connection != null) try { connection.close(); } catch(Exception e) {}
         }
     }
 }
