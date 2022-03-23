@@ -10,6 +10,6 @@ public class EditCourse {
         
         // Scene scene = new Scene();
         // window.setScene(scene);
-        // window.show();
+
     }
 }
