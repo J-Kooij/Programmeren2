@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GCourse {
-    public static void showWindow(Stage window){
+    public static void showWindow(Stage window) {
         ArrayList<GCourse> courses;
 
         window.setTitle("CodeCademy | Courses");
@@ -47,7 +47,7 @@ public class GCourse {
 
         column1.setSortType(TableColumn.SortType.ASCENDING);
         tableView.getSortOrder().add(column1);
-        
+
         HBox buttons = new HBox();
         buttons.setSpacing(10);
         Button createButton = new Button("Create");
@@ -75,5 +75,5 @@ public class GCourse {
         Scene scene = new Scene(vLayout);
         window.setScene(scene);
     }
-    
+
 }

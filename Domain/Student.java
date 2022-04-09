@@ -1,6 +1,6 @@
 package Programmeren2.Domain;
 
-public class Student{
+public class Student {
     private String name;
     private String email;
     private String gender;
@@ -11,7 +11,7 @@ public class Student{
     private String country;
     private int studentId;
 
-    public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId){
+    public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId) {
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -87,5 +87,5 @@ public class Student{
         this.studentId = studentId;
     }
 
- 
+
 }

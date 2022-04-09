@@ -56,5 +56,5 @@ public class Course {
     public void setRecommendedCourses(ArrayList<Course> recommendedCourses) {
         this.recommendedCourses = recommendedCourses;
     }
-    
+
 }

@@ -1,6 +1,6 @@
 package Programmeren2.Domain;
 
-public enum Difficulty{
+public enum Difficulty {
     BEGINNER,
     INTERMEDIATE,
     EXPERT,

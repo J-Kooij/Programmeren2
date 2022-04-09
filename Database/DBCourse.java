@@ -4,13 +4,13 @@ import java.sql.PreparedStatement;
 
 import Programmeren2.Domain.Course;
 
-public class DBCourse extends Database{
+public class DBCourse extends Database {
 
-    public DBCourse(){
+    public DBCourse() {
         super();
     }
 
-    public void createCourse(Course course){
+    public void createCourse(Course course) {
 
         // Create prepared statement
         String query = "INSERT INTO Course VALUES(?, ?, ?, ?)";
@@ -22,7 +22,7 @@ public class DBCourse extends Database{
             stmt.setString(4, course.getDifficulty());
             // Execute statement
             stmt.executeUpdate();
-            
+
         } catch (Exception e) {
             System.out.format("Error while creating Course (createCourse): %s", e.toString());
         }
