@@ -16,11 +16,19 @@ public class Student {
         this.email = email;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.password = password;
+        this.setPassword(password);
         this.address = address;
         this.city = city;
         this.country = country;
         this.studentId = studentId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
