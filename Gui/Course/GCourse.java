@@ -1,7 +1,11 @@
 package Programmeren2.Gui.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import Programmeren2.Database.Course.DBCourse;
+import Programmeren2.Domain.Course;
+import Programmeren2.Domain.Difficulty;
 import Programmeren2.Domain.Student;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
@@ -15,34 +19,36 @@ import javafx.stage.Stage;
 
 public class GCourse {
     public static void showWindow(Stage window) {
-        ArrayList<GCourse> courses;
-
+        DBCourse dbCourse = new DBCourse();
+        List<Course> courses = new ArrayList<>();
+        courses = dbCourse.getCourses();
+        
         window.setTitle("CodeCademy | Courses");
         VBox vLayout = new VBox();
 
+        TableView<Course> tableView = new TableView();
 
-        TableView tableView = new TableView();
+        TableColumn<Course, String> column1 = new TableColumn<>("Name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
 
-        TableColumn<String, String> column1 = new TableColumn<>("Name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<String, String> column2 = new TableColumn<>("Subject");
+        TableColumn<Course, String> column2 = new TableColumn<>("Subject");
         column2.setCellValueFactory(new PropertyValueFactory<>("subject"));
 
-        TableColumn<String, String> column3 = new TableColumn<>("introText");
-        column2.setCellValueFactory(new PropertyValueFactory<>("introText"));
+        TableColumn<Course, String> column3 = new TableColumn<>("introText");
+        column3.setCellValueFactory(new PropertyValueFactory<>("introductionText"));
 
-        TableColumn<String, String> column4 = new TableColumn<>("Level");
-        // column2.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue()));
+        TableColumn<Course, String> column4 = new TableColumn<>("Level");
+        column4.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDifficulty().getValue()));
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
         tableView.getColumns().add(column3);
         tableView.getColumns().add(column4);
 
-        // for (Course course : courses) {
-        // tableView.getItems().add(courses);
-        // }
+
+        for (Course course : courses) {
+        tableView.getItems().add(course);
+        }
 
 
         column1.setSortType(TableColumn.SortType.ASCENDING);
@@ -63,11 +69,9 @@ public class GCourse {
             //CRUD of courses not needed for this exercise 
         });
 
-        editButton.setOnAction((event) -> {
+        deleteButton.setOnAction((event) -> {
             //CRUD of courses not needed for this exercise 
         });
-
-
         buttons.getChildren().addAll(createButton, editButton, deleteButton);
 
         vLayout.getChildren().addAll(tableView, buttons);
