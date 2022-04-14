@@ -55,20 +55,6 @@ public class Gui extends Application {
             GCourse.showWindow(window);
         });
 
-        // -------------------------------------------------------------------
-
-
-        // GetItem------------------------------------------------------------------------------------------------------------
-
-        // test.setOnAction((event)-> {
-        // Object word= ((TableColumn<Student, String>)
-        // tableView.getColumns().get(1)).getCellObservableValue(0).getValue();
-        // System.out.println(word);
-        // });
-
-        // --------------------------------------------------------------------------------------------------------------------
-
-
     }
 
 }
