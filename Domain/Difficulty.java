@@ -6,15 +6,31 @@ public enum Difficulty {
     EXPERT("Expert"),
     NONE("None"),;
 
-    private String diff;
+    private String value;
 
     private Difficulty(String diff) {
-        this.diff = diff;
+        this.value = diff;
     }
 
+    // get value within parentheses
     public String getValue() {
-        return this.diff;
+        return this.value;
     }
 
-    
+    // convert value within parentheses to Difficulty
+    public static Difficulty convertToDiff(String value){
+        value = value.trim().toLowerCase();
+        if(value.equals("beginner")){
+            return BEGINNER;
+        }
+        if(value.equals("intermediate")){
+            return INTERMEDIATE;
+        }
+        if(value.equals("expert")){
+            return EXPERT;
+        }
+        else {
+            return NONE;
+        }
+    }
 }

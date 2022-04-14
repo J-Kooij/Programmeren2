@@ -16,16 +16,11 @@ public class Database {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             this.connection = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to the database.");
+      
 
         } catch (Exception e) {
             System.out.println("Could not connect to database.");
             e.printStackTrace();
-        } finally {
-            if (connection != null) try {
-                connection.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
     }
 }

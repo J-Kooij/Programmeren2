@@ -6,9 +6,9 @@ public class Course {
     private String courseName;
     private String subject;
     private String introductionText;
-    private String difficulty;
+    private Difficulty difficulty;
 
-    public Course(String courseName, String subject, String introductionText, String difficulty) {
+    public Course(String courseName, String subject, String introductionText, Difficulty difficulty) {
         this.courseName = courseName;
         this.subject = subject;
         this.introductionText = introductionText;
@@ -40,11 +40,11 @@ public class Course {
         this.introductionText = introductionText;
     }
 
-    public String getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
