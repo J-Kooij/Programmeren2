@@ -1,4 +1,4 @@
-package Gui.Student;
+package Programmeren2.Gui.Student;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
