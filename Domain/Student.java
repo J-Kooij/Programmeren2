@@ -11,17 +11,12 @@ public class Student {
     private String country;
     private int studentId;
 
-<<<<<<< HEAD
-
     public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId){
-=======
-    public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId) {
->>>>>>> 53dc988fe416586a019db0ca11889af059c34820
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.setPassword(password);
+        this.password=password;
         this.address = address;
         this.city = city;
         this.country = country;
