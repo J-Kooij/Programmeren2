@@ -8,8 +8,8 @@ import java.sql.*;
 public class Database {
     protected Connection connection;
 
-        //initialize connection with database
-        public Database() {
+    //initialize connection with database
+    public Database() {
         String connectionUrl = "jdbc:sqlserver://localhost;databaseName=ccdatabase;integratedSecurity=true;";
 
         try {
@@ -17,15 +17,15 @@ public class Database {
 
             this.connection = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to the database.");
-    
-        }
-        catch (Exception e) {
+
+        } catch (Exception e) {
             System.out.println("Could not connect to database.");
             e.printStackTrace();
-        }
-
-        finally {
-            if (connection != null) try { connection.close(); } catch(Exception e) {}
+        } finally {
+            if (connection != null) try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
     }
 }

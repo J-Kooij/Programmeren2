@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GCourse {
-    public static void showWindow(Stage window){
+    public static void showWindow(Stage window) {
         ArrayList<GCourse> courses;
 
         window.setTitle("CodeCademy | Courses");
@@ -47,7 +47,7 @@ public class GCourse {
 
         column1.setSortType(TableColumn.SortType.ASCENDING);
         tableView.getSortOrder().add(column1);
-        
+
         HBox buttons = new HBox();
         buttons.setSpacing(10);
         Button createButton = new Button("Create");
@@ -55,15 +55,16 @@ public class GCourse {
         Button deleteButton = new Button("Delete");
 
         createButton.setOnAction((event) -> {
+            //CRUD of courses not needed for this exercise but already made.
             GCreateCourse.showWindow(window);
         });
 
         editButton.setOnAction((event) -> {
-            GEditCourse.showWindow(window);
+            //CRUD of courses not needed for this exercise 
         });
 
         editButton.setOnAction((event) -> {
-            //TODO Delete function
+            //CRUD of courses not needed for this exercise 
         });
 
 
@@ -75,5 +76,5 @@ public class GCourse {
         Scene scene = new Scene(vLayout);
         window.setScene(scene);
     }
-    
+
 }

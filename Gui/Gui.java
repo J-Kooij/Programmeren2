@@ -33,7 +33,7 @@ public class Gui extends Application {
 
         Label welcome = new Label("Welcome");
         welcome.setFont(new Font("Arial", 30));
-        VBox.setMargin(welcome, new Insets(0, 0, 50, 0));
+        mLayout.setMargin(welcome, new Insets(0, 0, 50, 0));
 
         HBox buttons = new HBox();
         buttons.setAlignment(Pos.CENTER);
@@ -56,7 +56,6 @@ public class Gui extends Application {
         });
 
         // -------------------------------------------------------------------
-
 
 
         // GetItem------------------------------------------------------------------------------------------------------------

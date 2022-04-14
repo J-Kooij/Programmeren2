@@ -7,14 +7,13 @@ public class Course {
     private String subject;
     private String introductionText;
     private String difficulty;
-    private ArrayList<Course> recommendedCourses;
 
-    public Course(String courseName, String subject, String introductionText, String difficulty, ArrayList<Course> recommendedCourses) {
+    public Course(String courseName, String subject, String introductionText, String difficulty) {
         this.courseName = courseName;
         this.subject = subject;
         this.introductionText = introductionText;
         this.difficulty = difficulty;
-        this.recommendedCourses = recommendedCourses;
+
     }
 
     public String getCourseName() {
@@ -49,12 +48,4 @@ public class Course {
         this.difficulty = difficulty;
     }
 
-    public ArrayList<Course> getRecommendedCourses() {
-        return recommendedCourses;
-    }
-
-    public void setRecommendedCourses(ArrayList<Course> recommendedCourses) {
-        this.recommendedCourses = recommendedCourses;
-    }
-    
 }

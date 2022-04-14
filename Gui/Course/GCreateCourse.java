@@ -1,5 +1,8 @@
 package Programmeren2.Gui.Course;
 
+import Programmeren2.Database.DBCourse;
+import Programmeren2.Domain.Course;
+import Programmeren2.Domain.Difficulty;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Course.GCourse;
 import javafx.application.Application;
@@ -32,9 +35,11 @@ public class GCreateCourse {
         VBox mLayout = new VBox();
         mLayout.setAlignment(Pos.CENTER);
 
+        layout.setCenter(mLayout);
+
         Label welcome = new Label("Create Course");
         welcome.setFont(new Font("Arial", 45));
-        layout.setCenter(mLayout);
+
 
         //Course name
         Label name = new Label("Name:... ");
@@ -46,17 +51,34 @@ public class GCreateCourse {
 
         //Introduction text
         Label introTxt = new Label("Introduction text:...");
-        TextArea introTxtTF = new TextArea();
+        TextArea introTxtTA = new TextArea();
 
         //Course difficulty 
         Label difficulty = new Label("Difficulty:...");
         ComboBox<String> diffCombobox = new ComboBox<>();
-        // diffCombobox.getItems().add(Difficulty.BEGINNER.getValue());
-        // diffCombobox.getItems().add(Difficulty.ADVANCED.getValue());
-        // diffCombobox.getItems().add(Difficulty.EXPERT.getValue());
+        diffCombobox.getItems().add(Difficulty.BEGINNER.getValue());
+        diffCombobox.getItems().add(Difficulty.INTERMEDIATE.getValue());
+        diffCombobox.getItems().add(Difficulty.EXPERT.getValue());
 
 
-        mLayout.getChildren().addAll(welcome, name, nameTextField, subject, subjectTextField, introTxt, introTxtTF, difficulty, diffCombobox);
+        
+        //Create button
+        Button button = new Button("Create");
+        mLayout.setMargin(button, new Insets(10,0,10,0));
+
+        //Button action on click
+        button.setOnAction((event) -> {
+            String contentName = nameTextField.getText();
+            String contentSubject =subjectTextField.getText();
+            String contentIntroTxt = introTxtTA.getText();
+            String contentComboBox = diffCombobox.getValue();
+
+            Course course = new Course(contentName, contentSubject, contentIntroTxt, contentComboBox);
+            DBCourse db = new DBCourse();
+            db.createCourse(course);
+        });
+
+        mLayout.getChildren().addAll(welcome, name, nameTextField, subject, subjectTextField, introTxt, introTxtTA, difficulty, diffCombobox, button);
         //Show HomePage
         Scene scene = new Scene(layout);
         window.setScene(scene);

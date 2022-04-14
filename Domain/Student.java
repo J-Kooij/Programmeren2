@@ -1,6 +1,6 @@
 package Programmeren2.Domain;
 
-public class Student{
+public class Student {
     private String name;
     private String email;
     private String gender;
@@ -11,17 +11,29 @@ public class Student{
     private String country;
     private int studentId;
 
+<<<<<<< HEAD
 
     public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId){
+=======
+    public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId) {
+>>>>>>> 53dc988fe416586a019db0ca11889af059c34820
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.password = password;
+        this.setPassword(password);
         this.address = address;
         this.city = city;
         this.country = country;
         this.studentId = studentId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -88,5 +100,5 @@ public class Student{
         this.studentId = studentId;
     }
 
- 
+
 }
