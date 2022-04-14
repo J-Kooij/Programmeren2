@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 
 public class GStudent {
     public static void showWindow(Stage window) {
+        window.setTitle("CodeCademy | Students");
+        VBox vLayout = new VBox();
 
+        Scene scene = new Scene(vLayout);
+        window.setScene(scene);
     }
 }

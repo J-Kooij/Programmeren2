@@ -2,6 +2,7 @@ package Programmeren2.Gui;
 
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Course.GCourse;
+import Programmeren2.Gui.Student.GStudent;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -53,6 +54,10 @@ public class Gui extends Application {
 
         vCoursesButton.setOnAction((event) -> {
             GCourse.showWindow(window);
+        });
+
+        vStudentButton.setOnAction((event) -> {
+            GStudent.showWindow(window);
         });
 
         // -------------------------------------------------------------------
