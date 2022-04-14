@@ -55,15 +55,16 @@ public class GCourse {
         Button deleteButton = new Button("Delete");
 
         createButton.setOnAction((event) -> {
+            //CRUD of courses not needed for this exercise but already made.
             GCreateCourse.showWindow(window);
         });
 
         editButton.setOnAction((event) -> {
-            GEditCourse.showWindow(window);
+            //CRUD of courses not needed for this exercise 
         });
 
         editButton.setOnAction((event) -> {
-            //TODO Delete function
+            //CRUD of courses not needed for this exercise 
         });
 
 

@@ -1,5 +1,7 @@
 package Programmeren2.Gui.Course;
 
+import Programmeren2.Database.DBCourse;
+import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Difficulty;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Course.GCourse;
@@ -71,6 +73,9 @@ public class GCreateCourse {
             String contentIntroTxt = introTxtTA.getText();
             String contentComboBox = diffCombobox.getValue();
 
+            Course course = new Course(contentName, contentSubject, contentIntroTxt, contentComboBox);
+            DBCourse db = new DBCourse();
+            db.createCourse(course);
         });
 
         mLayout.getChildren().addAll(welcome, name, nameTextField, subject, subjectTextField, introTxt, introTxtTA, difficulty, diffCombobox, button);
