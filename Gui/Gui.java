@@ -32,7 +32,7 @@ public class Gui extends Application {
         VBox mLayout = new VBox();
         mLayout.setAlignment(Pos.CENTER);
 
-        Label welcome = new Label("Welcome");
+        Label welcome = new Label("Welcome to Codecademy!");
         welcome.setFont(new Font("Arial", 30));
         mLayout.setMargin(welcome, new Insets(0, 0, 50, 0));
 
@@ -41,7 +41,9 @@ public class Gui extends Application {
         buttons.setSpacing(10);
 
         Button vStudentButton = new Button("View Students");
+        vStudentButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17; -fx-text-style:bold;");
         Button vCoursesButton = new Button("View Courses");
+        vCoursesButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17;");
 
         buttons.getChildren().addAll(vStudentButton, vCoursesButton);
         mLayout.getChildren().addAll(welcome, buttons);
@@ -53,9 +55,11 @@ public class Gui extends Application {
         window.show();
 
         vCoursesButton.setOnAction((event) -> {
-            GCourse.showWindow(window);
+            GCourse.showWindow(window);});
+        
+        vStudentButton.setOnAction(e -> {
+            GStudent.showWindow(window);            
         });
 
-    }
-
+    } 
 }
