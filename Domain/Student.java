@@ -3,13 +3,13 @@ package Programmeren2.Domain;
 public class Student {
     private String name;
     private String email;
-    private String gender;
+    private Gender gender;
     private String birthDate;
     private String address;
     private String city;
     private String country;;
 
-    public Student(String name, String email, String gender, String birthDate, String address, String city, String country){
+    public Student(String name, String email, Gender gender, String birthDate, String address, String city, String country){
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -35,11 +35,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
