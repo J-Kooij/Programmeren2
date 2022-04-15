@@ -17,9 +17,10 @@ public class Database {
 
             this.connection = DriverManager.getConnection(connectionUrl);
       
+            System.out.println("[Database]: Successful connected to database.");
 
         } catch (Exception e) {
-            System.out.println("Could not connect to database.");
+            System.out.println("[Database]: Could not connect to database: "+e.toString());
             e.printStackTrace();
         } 
     }
