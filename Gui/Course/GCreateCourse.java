@@ -1,6 +1,6 @@
 package Programmeren2.Gui.Course;
 
-import Programmeren2.Database.Course.DBCourse;
+import Programmeren2.Database.DBCourse;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Difficulty;
 import Programmeren2.Domain.Student;
