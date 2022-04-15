@@ -1,15 +1,18 @@
 package Programmeren2.Domain;
 
-public class Module {
+public class Module extends ContentItem{
     private int version;
     private int contentItemId;
     private ContactPerson contactPerson;
     
-    public Module(int version, int contentItemId, ContactPerson contactPerson) {
+    public Module(int contentItemId, String publicationDate, String title, String descriptionl, Status status,
+            int version, int contentItemId2, ContactPerson contactPerson) {
+        super(contentItemId, publicationDate, title, descriptionl, status);
         this.version = version;
-        this.contentItemId = contentItemId;
+        contentItemId = contentItemId2;
         this.contactPerson = contactPerson;
     }
+
     public int getVersion() {
         return version;
     }
