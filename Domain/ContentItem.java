@@ -4,13 +4,13 @@ public abstract class ContentItem {
     private int contentItemId;
     private String publicationDate;
     private String title;
-    private String descriptionl;
+    private String description;
     private Status status;
-    public ContentItem(int contentItemId, String publicationDate, String title, String descriptionl, Status status) {
+    public ContentItem(int contentItemId, String publicationDate, String title, String description, Status status) {
         this.contentItemId = contentItemId;
         this.publicationDate = publicationDate;
         this.title = title;
-        this.descriptionl = descriptionl;
+        this.description = description;
         this.status = status;
     }
     public int getContentItemId() {
@@ -32,10 +32,10 @@ public abstract class ContentItem {
         this.title = title;
     }
     public String getDescriptionl() {
-        return descriptionl;
+        return description;
     }
     public void setDescriptionl(String descriptionl) {
-        this.descriptionl = descriptionl;
+        this.description = descriptionl;
     }
     public Status getStatus() {
         return status;
