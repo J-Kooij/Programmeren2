@@ -5,30 +5,18 @@ public class Student {
     private String email;
     private String gender;
     private String birthDate;
-    private String password;
     private String address;
     private String city;
-    private String country;
-    private int studentId;
+    private String country;;
 
-    public Student(String name, String email, String gender, String birthDate, String password, String address, String city, String country, int studentId){
+    public Student(String name, String email, String gender, String birthDate, String address, String city, String country){
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.password=password;
         this.address = address;
         this.city = city;
         this.country = country;
-        this.studentId = studentId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -86,14 +74,5 @@ public class Student {
     public void setCountry(String country) {
         this.country = country;
     }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
 
 }
