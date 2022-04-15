@@ -1,22 +1,24 @@
 package Programmeren2.Domain;
 
-public class Registration {
-    private String registrationDate;
-    private int certificateId;
-    private String courseName;
-    private String studentEmail;
+import java.sql.Date;
 
-    public Registration(String registrationDate, int certificateId, String courseName, String studentEmail) {
+public class Registration {
+    private Date registrationDate;
+    private int certificateId;
+    private Course course;
+    private Student student;
+
+    public Registration(Date registrationDate, int certificateId, Course course, Student student) {
         this.registrationDate = registrationDate;
         this.certificateId = certificateId;
-        this.courseName = courseName;
-        this.studentEmail = studentEmail;
+        this.course = course;
+        this.student = student;
     }
-    
-    public String getRegistrationDate() {
+
+    public Date getRegistrationDate() {
         return registrationDate;
     }
-    public void setRegistrationDate(String registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
     public int getCertificateId() {
@@ -25,17 +27,17 @@ public class Registration {
     public void setCertificateId(int certificateId) {
         this.certificateId = certificateId;
     }
-    public String getCourseName() {
-        return courseName;
+    public Course getCourse() {
+        return course;
     }
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourse(Course course) {
+        this.course = course;
     }
-    public String getStudentEmail() {
-        return studentEmail;
+    public Student getStudent() {
+        return student;
     }
-    public void setStudentEmail(String studentEmail) {
-        this.studentEmail = studentEmail;
+    public void setStudent(Student student) {
+        this.student = student;
     }
     
 }
