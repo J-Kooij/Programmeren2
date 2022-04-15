@@ -41,9 +41,9 @@ public class Gui extends Application {
         buttons.setSpacing(10);
 
         Button vStudentButton = new Button("View Students");
-        vStudentButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17; -fx-text-style:bold;");
+        vStudentButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17; -fx-font-weight: bold");
         Button vCoursesButton = new Button("View Courses");
-        vCoursesButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17;");
+        vCoursesButton.setStyle("-fx-background-color: #0495bd; -fx-text-fill: white; -fx-font-size:17; -fx-font-weight: bold");
 
         buttons.getChildren().addAll(vStudentButton, vCoursesButton);
         mLayout.getChildren().addAll(welcome, buttons);
