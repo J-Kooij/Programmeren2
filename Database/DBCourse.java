@@ -1,4 +1,4 @@
-package Programmeren2.Database.Course;
+package Programmeren2.Database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Programmeren2.Database.Database;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Difficulty;
 
