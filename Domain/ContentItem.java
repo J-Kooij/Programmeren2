@@ -1,7 +1,7 @@
 package Programmeren2.Domain;
 
 public abstract class ContentItem {
-    private int contentItemId;
+    protected int contentItemId;
     private String publicationDate;
     private String title;
     private String description;
