@@ -17,11 +17,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Gui extends Application {
 
     @Override
-    public void start(Stage window) throws Exception {
+    public void start(Stage scene) throws Exception {
+        //Show HomePage
+        scene.setScene(showWindow(scene));
+        scene.show();
+
+    } 
+
+    public static Scene showWindow(Stage window) throws Exception {
 
         // HomePagelayout-------------------------------------------------------------------
         window.setTitle("CodeCademy by Jonah[2191148]&Tony[2182138]");
@@ -49,17 +57,13 @@ public class Gui extends Application {
         mLayout.getChildren().addAll(welcome, buttons);
         layout.setCenter(mLayout);
 
-        //Show HomePage
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.show();
-
         vCoursesButton.setOnAction((event) -> {
             GCourse.showWindow(window);});
         
         vStudentButton.setOnAction(e -> {
             GStudent.showWindow(window);            
         });
-
-    } 
+        Scene scene = new Scene(layout);
+        return scene;
+    }
 }
