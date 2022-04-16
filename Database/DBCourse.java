@@ -15,7 +15,7 @@ public class DBCourse extends Database {
         super();
     }
 
-    //Method to create a course
+    //Method to put created course in db
     public void createCourse(Course course) {
 
         String query = "INSERT INTO Course VALUES(?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class DBCourse extends Database {
                 String courseName = results.getString("CourseName");
                 String subject = results.getString("Subject");
                 String introductionText = results.getString("IntroductionText");
-                Difficulty difficulty = Difficulty.convertToDiff(results.getString("Difficulty")); ;
+                Difficulty difficulty = Difficulty.convertToDiff(results.getString("Difficulty"));
 
 
                 Course course = new Course(courseName, subject, introductionText, difficulty);
@@ -55,6 +55,31 @@ public class DBCourse extends Database {
             System.out.print("[DbCourse]: Error getting all courses: " + e.toString());
         }
         return courses;
+    }
+
+    //Method to get specific Course
+    public Course getCourse(String courseName){
+
+        String query = "SELECT * FROM Course WHERE CourseName = ?";
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)){
+            stmt.setString(1, courseName);
+            ResultSet results = stmt.executeQuery();
+
+            while(results.next()){
+                String name = results.getString("CourseName");
+                String subject = results.getString("Subject");
+                String introductionText = results.getString("IntroductionText");
+                Difficulty difficulty = Difficulty.convertToDiff(results.getString("Difficulty")); ;
+
+
+                Course course = new Course(name, subject, introductionText, difficulty);
+                return course;
+            }
+            System.out.print("[DbCourse]: Succesfull getting specific courses ");
+        } catch (Exception e) {
+            System.out.print("[DbCourse]: Error getting specific courses: " + e.toString());
+        }
+        return null;
     }
 
 
