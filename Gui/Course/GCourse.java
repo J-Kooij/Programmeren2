@@ -10,13 +10,16 @@ import Programmeren2.Domain.Student;
 import Programmeren2.Gui.ContentItem.GContentItem;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -64,7 +67,10 @@ public class GCourse {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() ==2){
-                    GContentItem.showWindow(window);
+
+                    Course clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                                
+                    GContentItem.showWindow(window, clickedItem);
                 }
                 
             }

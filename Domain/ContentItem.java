@@ -1,12 +1,14 @@
 package Programmeren2.Domain;
 
+import java.util.Date;
+
 public abstract class ContentItem {
-    private int contentItemId;
-    private String publicationDate;
+    protected int contentItemId;
+    private Date publicationDate;
     private String title;
     private String description;
     private Status status;
-    public ContentItem(int contentItemId, String publicationDate, String title, String description, Status status) {
+    public ContentItem(int contentItemId, Date publicationDate, String title, String description, Status status) {
         this.contentItemId = contentItemId;
         this.publicationDate = publicationDate;
         this.title = title;
@@ -19,10 +21,10 @@ public abstract class ContentItem {
     public void setContentItemId(int contentItemId) {
         this.contentItemId = contentItemId;
     }
-    public String getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
-    public void setPublicationDate(String publicationDate) {
+    public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
     public String getTitle() {

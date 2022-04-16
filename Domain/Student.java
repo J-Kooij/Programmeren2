@@ -1,15 +1,17 @@
 package Programmeren2.Domain;
 
+import java.util.Date;
+
 public class Student {
     private String name;
     private String email;
     private Gender gender;
-    private String birthDate;
+    private Date birthDate;
     private String address;
     private String city;
     private String country;;
 
-    public Student(String name, String email, Gender gender, String birthDate, String address, String city, String country){
+    public Student(String name, String email, Gender gender, Date birthDate, String address, String city, String country){
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -43,11 +45,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
