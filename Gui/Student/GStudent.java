@@ -29,6 +29,7 @@ public class GStudent {
         Button backButton = new Button("< Back");
         backButton.setOnAction(e -> {GCourse.showWindow(window);;});
         Button createButton = new Button("Create");
+        createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
         Button editButton = new Button("Edit");
         Button deleteButton = new Button("Delete");
         
