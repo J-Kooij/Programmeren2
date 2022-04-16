@@ -10,6 +10,7 @@ import Programmeren2.Domain.ContentItem;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Module;
 import Programmeren2.Domain.Speaker;
+import Programmeren2.Domain.Status;
 import Programmeren2.Domain.Webcast;
 
 public class DBContentItem extends Database {
@@ -18,35 +19,29 @@ public class DBContentItem extends Database {
         super();
     }
 
-    // Method get all contentItem
-    // public List<ContentItem> getContentItems() {
-
-    //     List<ContentItem> contentItems = new ArrayList<>();
-    //     contentItems.addAll(getModules());
-    //     contentItems.addAll(getWebcasts());
-    //     return contentItems;
-    // }
-
-    // Method get all modules
-    public List<Module> getModules() {
+    // Method get all modules from specific course
+    public List<Module> getModules(Course course) {
 
         List<Module> modules = new ArrayList<>();
-        String query = "SELECT * FROM Module INNER JOIN ContentItem ON Module.ContentItemId = ContentItem.ContentItemId INNER JOIN ContactPerson ON ContactPerson.Name = Module.ContactPerson ";
+        String query = "SELECT * FROM Module INNER JOIN ContentItem ON Module.ContentItemId = ContentItem.ContentItemId INNER JOIN ContactPerson ON ContactPerson.Name = Module.ContactPerson WHERE ContentItem.CourseName = ?";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
+            stmt.setString(1, course.getCourseName());
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
                 int contentItemId = results.getInt("ContentItemId");
                 String publicationDate = results.getString("PublicationDate");
                 int moduleVersion = results.getInt("Version");
-
+                String title = results.getString("Title");
+                String description = results.getString("description");
+                Status status = Status.convertToStatus(results.getString("Status"));
                 String contactPersonName = results.getString("Name");
                 String contactPersonEmail = results.getString("Email");
 
                 ContactPerson contactPerson = new ContactPerson(contactPersonName, contactPersonEmail);
 
-                // Module module = new Module(contentItemId, publicationDate, title, descriptionl, status, version, contentItemId2, contactPerson);
-                // modules.add(module);
+                Module module = new Module(contentItemId, publicationDate, title, description, status, moduleVersion, contactPerson);
+                modules.add(module);
 
 
             }
@@ -57,26 +52,28 @@ public class DBContentItem extends Database {
         return modules;
     }
 
-        // Method get all webcast
-        public List<Webcast> getWebcasts() {
+        // Method get all webcast from specific course
+        public List<Webcast> getWebcasts(Course course) {
         
             List<Webcast> webcasts = new ArrayList<>();
-            String query = "SELECT * FROM Webcast INNER JOIN ContentItem ON Webcast.ContentItemId = ContentItem.ContentItemId INNER JOIN Speaker ON Speaker.Speaker = Webcast.Speaker ";
+            String query = "SELECT * FROM Webcast INNER JOIN ContentItem ON Webcast.ContentItemId = ContentItem.ContentItemId INNER JOIN Speaker ON Speaker.Speaker = Webcast.Speaker WHERE ContentItem.CourseName = ? ";
             try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
+                stmt.setString(1, course.getCourseName());
                 ResultSet results = stmt.executeQuery();
     
                 while (results.next()) {
                     int contentItemId = results.getInt("ContentItemId");
                     String publicationDate = results.getString("PublicationDate");
-                    int moduleVersion = results.getInt("Version");
-    
+                    String title = results.getString("Title");
+                    String description = results.getString("Description");
+                    Status status = Status.convertToStatus(results.getString("Status"));
                     String speakerName = results.getString("Speaker");
                     String SpeakerOrganisation = results.getString("Organisation");
     
                     Speaker speaker = new Speaker(speakerName, SpeakerOrganisation);
 
-                    // Webcast webcast = new Webcast(contentItemId, publicationDate, title, descriptionl, status, contentItemId2, speaker);
-                    // webcasts.add(webcast);
+                    Webcast webcast = new Webcast(contentItemId, publicationDate, title, description, status, speaker);
+                    webcasts.add(webcast);
 
                 }
                 System.out.print("[DbContentItem]: Succesfull getting all webcasts ");
