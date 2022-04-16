@@ -99,7 +99,7 @@ public class GCourse {
         vLayout.getChildren().addAll(tableView, buttons);
 
 
-        Scene scene = new Scene(vLayout);
+        Scene scene = new Scene(vLayout, 550, 350);
         window.setScene(scene);
     }
 
