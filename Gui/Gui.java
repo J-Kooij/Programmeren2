@@ -24,12 +24,12 @@ public class Gui extends Application {
     @Override
     public void start(Stage scene) throws Exception {
         //Show HomePage
-        scene.setScene(showWindow(scene));
+        showWindow(scene);
         scene.show();
 
     } 
 
-    public static Scene showWindow(Stage window) throws Exception {
+    public static void showWindow(Stage window) throws Exception {
 
         // HomePagelayout-------------------------------------------------------------------
         window.setTitle("CodeCademy by Jonah[2191148]&Tony[2182138]");
@@ -64,6 +64,7 @@ public class Gui extends Application {
             GStudent.showWindow(window);            
         });
         Scene scene = new Scene(layout);
-        return scene;
+        window.setScene(scene);
+        
     }
 }
