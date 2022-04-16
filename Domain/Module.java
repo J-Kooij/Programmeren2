@@ -1,11 +1,13 @@
 package Programmeren2.Domain;
 
+import java.util.Date;
+
 public class Module extends ContentItem{
     private int version;
     private ContactPerson contactPerson;
     
 
-    public Module(int contentItemId, String publicationDate, String title, String description, Status status,
+    public Module(int contentItemId, Date publicationDate, String title, String description, Status status,
             int version, ContactPerson contactPerson) {
         super(contentItemId, publicationDate, title, description, status);
         this.version = version;
