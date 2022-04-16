@@ -14,6 +14,7 @@ public class DBStudent extends Database{
         super();
     }
 
+    //Method to get all students
     public List<Student> getStudents(){
         List<Student> students = new ArrayList<>();
 
@@ -40,6 +41,34 @@ public class DBStudent extends Database{
         return students;
     }
 
+    //Method to get specific student
+    public Student getStudent(String studentEmail){
+
+        String query = "SELECT * FROM Student WHERE Email = ?";
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)){
+            stmt.setString(1, studentEmail);
+            ResultSet results = stmt.executeQuery();
+
+            while(results.next()){
+                String email = results.getString("Email");
+                String name = results.getString("Name");
+                Gender gender = Gender.convertToGender(results.getString("Gender"));
+                String birthDate = results.getString("BirthDate");
+                String address = results.getString("Address");
+                String city = results.getString("city");
+                String country = results.getString("Country");
+
+                Student student = new Student(name, email, gender, birthDate, address, city, country);
+                return student;
+            }
+            System.out.print("[DBStudent]: Succesfull getting specific students ");
+        } catch (Exception e) {
+            System.out.print("[DBStudent]: Error getting specific students: " + e.toString());
+        }
+        return null;
+    }
+
+    //method to input created student in db
     public void createStudents(Student student){
 
         String query = "INSERT INTO Student VALUES(?, ?, ?, ?, ?, ?, ?)";
