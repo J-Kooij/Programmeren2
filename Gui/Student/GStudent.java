@@ -33,32 +33,32 @@ public class GStudent {
         layout.setCenter(tableView);
 
         TableColumn<Student, String> column1 = new TableColumn<>("Name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column2 = new TableColumn<>("Email");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        column2.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column3 = new TableColumn<>("Gender");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column3.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        column3.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column4 = new TableColumn<>("Birthdate");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column4.setCellValueFactory(new PropertyValueFactory<>("BirthDate"));
+        column4.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column5 = new TableColumn<>("Address");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column5.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        column5.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column6 = new TableColumn<>("City");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column6.setCellValueFactory(new PropertyValueFactory<>("City"));
+        column6.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         TableColumn<Student, String> column7 = new TableColumn<>("Country");
-        column1.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        column1.prefWidthProperty().bind(tableView.widthProperty().divide(7));
+        column7.setCellValueFactory(new PropertyValueFactory<>("Country"));
+        column7.prefWidthProperty().bind(tableView.widthProperty().divide(7));
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
