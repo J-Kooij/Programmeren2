@@ -1,5 +1,6 @@
 package Programmeren2.Database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class DBContentItem extends Database {
 
             while (results.next()) {
                 int contentItemId = results.getInt("ContentItemId");
-                String publicationDate = results.getString("PublicationDate");
+                Date publicationDate = results.getDate("PublicationDate");
                 int moduleVersion = results.getInt("Version");
                 String title = results.getString("Title");
                 String description = results.getString("description");
@@ -63,7 +64,7 @@ public class DBContentItem extends Database {
     
                 while (results.next()) {
                     int contentItemId = results.getInt("ContentItemId");
-                    String publicationDate = results.getString("PublicationDate");
+                    Date publicationDate = results.getDate("PublicationDate");
                     String title = results.getString("Title");
                     String description = results.getString("Description");
                     Status status = Status.convertToStatus(results.getString("Status"));

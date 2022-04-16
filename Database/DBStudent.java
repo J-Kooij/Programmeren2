@@ -1,5 +1,6 @@
 package Programmeren2.Database;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DBStudent extends Database{
                 String email = results.getString("Email");
                 String name = results.getString("Name");
                 Gender gender = Gender.convertToGender(results.getString("Gender"));
-                String birthDate = results.getString("BirthDate");
+                Date birthDate = results.getDate("BirthDate");
                 String address = results.getString("Address");
                 String city = results.getString("city");
                 String country = results.getString("Country");
@@ -53,7 +54,7 @@ public class DBStudent extends Database{
                 String email = results.getString("Email");
                 String name = results.getString("Name");
                 Gender gender = Gender.convertToGender(results.getString("Gender"));
-                String birthDate = results.getString("BirthDate");
+                Date birthDate = results.getDate("BirthDate");
                 String address = results.getString("Address");
                 String city = results.getString("city");
                 String country = results.getString("Country");
@@ -77,7 +78,7 @@ public class DBStudent extends Database{
                 stmt.setString(2, student.getName());
                 stmt.setString(1, student.getEmail());
                 stmt.setString(4, student.getGender().getValue());
-                stmt.setString(3, student.getBirthDate());
+                stmt.setDate(3, new java.sql.Date(student.getBirthDate().getTime()));
                 stmt.setString(5, student.getAddress());
                 stmt.setString(6, student.getCity());
                 stmt.setString(7, student.getCountry());
@@ -97,7 +98,7 @@ public class DBStudent extends Database{
                 stmt.setString(2, student.getName());
                 stmt.setString(1, student.getEmail());
                 stmt.setString(4, student.getGender().getValue());
-                stmt.setString(3, student.getBirthDate());
+                stmt.setString(3, student.getBirthDate().toString());
                 stmt.setString(5, student.getAddress());
                 stmt.setString(6, student.getCity());
                 stmt.setString(7, student.getCountry());
