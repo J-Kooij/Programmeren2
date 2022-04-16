@@ -19,13 +19,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class GContentItem {
-    public static void showWindow(Stage window) {
+    public static void showWindow(Stage window, Course course) {
         window.setTitle("CodeCademy | Modules and Webcasts");
 
         DBContentItem dbContentItem = new DBContentItem();
 
         List<Module> modules = new ArrayList<>();
-        modules = dbContentItem.getModules();
+        modules = dbContentItem.getModules(course);
 
         TableView<Module> mTableView = new TableView<>();
 
@@ -77,7 +77,7 @@ public class GContentItem {
         //------------------------------------------------------------------------
         
         List<Webcast> webcasts = new ArrayList<>();
-        webcasts = dbContentItem.getWebcasts();
+        webcasts = dbContentItem.getWebcasts(course);
 
         TableView<Webcast> wTableView = new TableView<>();
 
