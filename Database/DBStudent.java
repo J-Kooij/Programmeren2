@@ -33,11 +33,67 @@ public class DBStudent extends Database{
                 Student student = new Student(name, email, gender, birthDate, address, city, country);
                 students.add(student);
             }
-            System.out.print("[Db]: Succesfull getting all courses ");
+            System.out.print("[DBStudent]: Succesfull getting all students ");
         } catch (Exception e) {
-            System.out.print("[DbCourse]: Error getting all courses: " + e.toString());
+            System.out.print("[DBStudent]: Error getting all students: " + e.toString());
         }
         return students;
+    }
+
+    public void createStudents(Student student){
+
+        String query = "INSERT INTO Student VALUES(?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)){
+
+                stmt.setString(2, student.getName());
+                stmt.setString(1, student.getEmail());
+                stmt.setString(4, student.getGender().getValue());
+                stmt.setString(3, student.getBirthDate());
+                stmt.setString(5, student.getAddress());
+                stmt.setString(6, student.getCity());
+                stmt.setString(7, student.getCountry());
+
+                stmt.executeUpdate();
+            System.out.print("[DBStudent]: Succesfull created student");
+        } catch (Exception e) {
+            System.out.print("[DBStudent]: Error created students: " + e.toString());
+        }
+    }
+
+    public void editStudents(Student student){
+
+        String query = "UPDATE Student SET Email = ?, Name = ?, BirthDate = ?, Gender = ?, Address = ?, City = ?, Country = ? WHERE Email = ?";
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)){
+
+                stmt.setString(2, student.getName());
+                stmt.setString(1, student.getEmail());
+                stmt.setString(4, student.getGender().getValue());
+                stmt.setString(3, student.getBirthDate());
+                stmt.setString(5, student.getAddress());
+                stmt.setString(6, student.getCity());
+                stmt.setString(7, student.getCountry());
+
+                stmt.setString(1, student.getEmail());
+
+                stmt.executeUpdate();
+            System.out.print("[DBStudent]: Succesfull edited student");
+        } catch (Exception e) {
+            System.out.print("[DBStudent]: Error edited students: " + e.toString());
+        }
+    }
+
+    public void deleteStudents(String email){
+
+        String query = "DELETE FROM Student WHERE email = ? ";
+        try (PreparedStatement stmt = super.connection.prepareStatement(query)){
+
+                stmt.setString(1, email);
+
+                stmt.executeUpdate();
+            System.out.print("[DBStudent]: Succesfull deleted student");
+        } catch (Exception e) {
+            System.out.print("[DBStudent]: Error deleted students: " + e.toString());
+        }
     }
     
 }
