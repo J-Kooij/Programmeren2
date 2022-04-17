@@ -46,7 +46,7 @@ public class DBRegister extends Database {
             while (results.next()) {
                 Date registrationDate = results.getDate("RegistrationDate");
                 Course course = dbCourse.getCourse(results.getString("CourseName"));
-                Integer registrationId = results.getRegistrationId("RegistrationId");
+                Integer registrationId = results.getInt("RegistrationId");
                 Registration registration = new Registration(registrationDate, course, student, registrationId);
                 registrations.add(registration);
             }
