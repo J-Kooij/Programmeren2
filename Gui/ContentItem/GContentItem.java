@@ -5,28 +5,41 @@ import java.util.List;
 
 import Programmeren2.Database.DBContentItem;
 import Programmeren2.Database.DBCourse;
+import Programmeren2.Database.DBProgression;
 import Programmeren2.Domain.ContentItem;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Module;
+import Programmeren2.Domain.Progression;
+import Programmeren2.Domain.Student;
 import Programmeren2.Domain.Webcast;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class GContentItem {
-    public static void showWindow(Stage window, Course course) {
+    public static void showWindow(Stage window, Course course, Student student) {
         window.setTitle("CodeCademy | Modules and Webcasts");
 
         DBContentItem dbContentItem = new DBContentItem();
+        DBProgression dbProgression = new DBProgression();
 
         List<Module> modules = new ArrayList<>();
         modules = dbContentItem.getModules(course);
 
+        Label label = new Label("hi");
+        BorderPane firstPage = new BorderPane();
         TableView<Module> mTableView = new TableView<>();
 
         TableColumn<Module, String> mColumn1 = new TableColumn<>("Title");
@@ -73,9 +86,29 @@ public class GContentItem {
         for (Module Module : modules) {
             mTableView.getItems().add(Module);
         }
-        
-        //------------------------------------------------------------------------
-        
+
+        // Event on click
+        mTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                List<Progression> progressions = dbProgression.getProgression(student, course);
+
+                if (event.getButton() == MouseButton.PRIMARY) {
+
+                    event.consume();
+                    Module selectedModule = mTableView.getSelectionModel().selectedItemProperty().get();
+
+                    for (int i = 0; i < progressions.size(); i++) {
+                        if (selectedModule.getContentItemId() == progressions.get(i).getContentItem().getContentItemId()&& progressions.get(i).getStudent().getEmail() == student.getEmail())
+                        label.setText(progressions.get(i).getPercentage() + " Procent");
+                    }
+
+                }
+            }
+        });
+
+        // ------------------------------------------------------------------------
+
         List<Webcast> webcasts = new ArrayList<>();
         webcasts = dbContentItem.getWebcasts(course);
 
@@ -102,11 +135,11 @@ public class GContentItem {
         wColumn5.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
 
         TableColumn<Webcast, String> wColumn6 = new TableColumn<>("Speaker name");
-        wColumn6.setCellValueFactory(new PropertyValueFactory<>("Speaker"));
+        wColumn6.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getSpeakerName()));
         wColumn6.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
 
         TableColumn<Webcast, String> wColumn7 = new TableColumn<>("Organisation");
-        wColumn7.setCellValueFactory(new PropertyValueFactory<>("Organisation"));
+        wColumn7.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getOrganisationOfSpeaker()));
         wColumn7.prefWidthProperty().bind(wTableView.widthProperty().divide(7.5));
 
         wTableView.getColumns().add(wColumn1);
@@ -121,10 +154,43 @@ public class GContentItem {
             wTableView.getItems().add(webcast);
         }
 
+        // Event on click
+        wTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                List<Progression> progressions = dbProgression.getProgression(student, course);
+                int current = 0;
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    event.consume();
+                    Webcast selectedWebcast = wTableView.getSelectionModel().selectedItemProperty().get();
+                    
+                    //get all progressions of specific person
+                    for (int i = 0; i < progressions.size(); i++) {
+                       
+                        if (student.getEmail().equals(progressions.get(i).getStudent().getEmail())) {
+                            current = i;
+
+                        }
+                        if (selectedWebcast.getContentItemId() == progressions.get(current).getContentItem().getContentItemId()) {
+                            label.setText(progressions.get(i).getPercentage() + " Procent");
+                            System.out.println(progressions.get(i).getPercentage()+"");
+                        } else {
+                            System.out.println("0 Procent");
+                        }
+                    }
+
+
+                }
+            }
+        });
+
         TabPane tabPane = new TabPane();
 
         Tab modulesTab = new Tab("Modules");
-        modulesTab.setContent(mTableView);
+        firstPage.setCenter(mTableView);
+        firstPage.setBottom(label);
+
+        modulesTab.setContent(firstPage);
 
         Tab webcastsTab = new Tab("Webcasts");
         webcastsTab.setContent(wTableView);
