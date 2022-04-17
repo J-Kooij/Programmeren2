@@ -10,6 +10,12 @@ public class Progression {
         this.contentItem = contentItem;
         this.percentage = percentage;
     }
+
+    public Progression(ContentItem contentItem, int percentage) {
+        this.contentItem = contentItem;
+        this.percentage = percentage;
+    }
+
     public Student getStudent() {
         return student;
     }
