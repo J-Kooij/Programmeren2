@@ -90,7 +90,6 @@ public class GRegistration {
                     contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
                     
                     edit.setOnAction((e) ->{
-                        // TODO ADD GUI FOR EDIT REGISTER
                         GEditRegistration.showWindow(window, selectedRegistration);
                     });
                     delete.setOnAction((e) ->{

@@ -23,8 +23,6 @@ public class GEditRegistration {
         Label email = new Label("Email: " + registration.getStudent().getEmail());
         ChoiceBox<String> courseChoice = new ChoiceBox<>();
         courseChoice.setValue(registration.getCourse().getCourseName());
-        // Moet loop komen die alle courses add vanuit arraylist
-        // niet vergeten type naar Course veranderen
         DBCourse dbCourse = new DBCourse();
         List<Course> courses = dbCourse.getCourses();
         for(Course c: courses){

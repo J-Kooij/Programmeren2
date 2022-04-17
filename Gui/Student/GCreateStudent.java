@@ -47,7 +47,6 @@ public class GCreateStudent {
         genderChoice.getItems().add(Gender.MALE.getValue());
         genderChoice.getItems().add(Gender.FEMALE.getValue());
         genderChoice.getItems().add(Gender.NONE.getValue());
-        // Tijdelijk een choicebox wellicht binnenkort checkbox ipv choiceboix?
 
         Label birthDate = new Label("Birthdate:");
         DatePicker birthDatePicker = new DatePicker();
