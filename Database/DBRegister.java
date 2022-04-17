@@ -19,15 +19,15 @@ public class DBRegister extends Database {
     // Input registration into database
     public void createRegistration(Registration registration) {
 
-        String query = "INSERT INTO Register VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO Register VALUES(?, ?, ?)";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
 
-            stmt.setDate(1, new java.sql.Date(registration.getRegistrationDate().getTime()));
+            stmt.setString(1, registration.getRegistrationDate().toString());
             stmt.setString(2, registration.getCourse().getCourseName());
             stmt.setString(3, registration.getStudent().getEmail());
-            stmt.setInt(4, registration.getRegistrationId());
 
             stmt.executeUpdate();
+            System.out.print("[DBRegister]: Successful created registration ");
         } catch (Exception e) {
             System.out.print("[DBRegister]: Error creating registration " + e.toString());
         }
