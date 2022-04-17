@@ -49,7 +49,6 @@ public class DBRegister extends Database {
                 Registration registration = new Registration(registrationDate, course, student);
                 registrations.add(registration);
             }
-            stmt.executeUpdate();
             System.out.print("[DBRegister]: Succesfull getting registration ");
         } catch (Exception e) {
             System.out.print("[DBRegister]: Error getting registration " + e.toString());
@@ -60,6 +59,7 @@ public class DBRegister extends Database {
     public void updateRegistration() {
 
     }
+    
 
     public void deleteRegistration() {
 
