@@ -1,8 +1,9 @@
-package Programmeren2.Gui.Student;
+package Programmeren2.Gui.Registration;
 
 import javafx.event.EventHandler;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
+import Programmeren2.Gui.Student.GCreateStudent;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -67,7 +68,7 @@ public class GRegistration {
             e1.printStackTrace();
         };});
         Button createButton = new Button("Create");
-        createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
+        createButton.setOnAction(e -> {GCreateRegistration.showWindow(window);});
         Button editButton = new Button("Edit");
         Button deleteButton = new Button("Delete");
         Button infoButton = new Button("🛈 More info");
