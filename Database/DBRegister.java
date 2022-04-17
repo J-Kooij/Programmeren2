@@ -25,7 +25,7 @@ public class DBRegister extends Database {
             stmt.setDate(1, new java.sql.Date(registration.getRegistrationDate().getTime()));
             stmt.setString(2, registration.getCourse().getCourseName());
             stmt.setString(3, registration.getStudent().getEmail());
-            stmt.setInt(4, registration.getRegistrationid());
+            stmt.setInt(4, registration.getRegistrationId());
 
             stmt.executeUpdate();
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class DBRegister extends Database {
             while (results.next()) {
                 Date registrationDate = results.getDate("RegistrationDate");
                 Course course = dbCourse.getCourse(results.getString("CourseName"));
-                Integer registrationId = results.getRegistrationid("RegistrationId");
+                Integer registrationId = results.getRegistrationId("RegistrationId");
                 Registration registration = new Registration(registrationDate, course, student, registrationId);
                 registrations.add(registration);
             }
@@ -64,7 +64,6 @@ public class DBRegister extends Database {
             stmt.setString(2, registration.getRegistrationDate().toString());
             stmt.setString(1, registration.getCourse().getCourseName());
             stmt.setString(4, registration.getStudent().getEmail());
-            // stmt.setString(3, registration.());
 
             stmt.executeUpdate();
             System.out.print("[DBRegistration]: Succesfull edited registration");

@@ -22,6 +22,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
@@ -44,23 +45,26 @@ public class GStudent {
         column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(4));
 
-        tableView.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944); -fx-background-radius: 7px 7px 0px 0px; -fx-padding: 0 0 5px 0;");
-        column1.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
+        tableView.setStyle("-fx-background-color: linear-gradient(to bottom, #9CC0E7, #EEEEEE); -fx-background-radius: 7px 7px 0px 0px; -fx-padding: 0 0 5px 0;");
+        column1.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
+
+        TableRow tableRow = new TableRow();
+        tableRow.setStyle("-fx-background-color: white");
 
         TableColumn<Student, String> column2 = new TableColumn<>("Email");
         column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
         column2.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column2.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
+        column2.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
 
         TableColumn<Student, String> column3 = new TableColumn<>("Gender");
         column3.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         column3.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column3.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
+        column3.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
 
         TableColumn<Student, String> column4 = new TableColumn<>("Birthdate");
         column4.setCellValueFactory(new PropertyValueFactory<>("BirthDate"));
         column4.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column4.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955); -fx-text-fill: white;");
+        column4.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
 
         TableColumn<Student, String> column5 = new TableColumn<>("Address");
         column5.setCellValueFactory(new PropertyValueFactory<>("Address"));
@@ -126,7 +130,7 @@ public class GStudent {
 
         // Setting layout for buttons at bottom
         HBox lHBox = new HBox();
-        lHBox.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
+        lHBox.setStyle("-fx-background-color: #EEEEEE;");
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
         backButton.setOnAction(e -> {
@@ -137,9 +141,9 @@ public class GStudent {
             }
             ;
         });
-        backButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         Button createButton = new Button("Create");
-        createButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
+        createButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         createButton.setOnAction(e -> {
             GCreateStudent.showWindow(window);
         });

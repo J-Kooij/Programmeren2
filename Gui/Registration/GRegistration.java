@@ -97,7 +97,7 @@ public class GRegistration {
                         // TODO ADD GUI FOR EDIT REGISTER
                     });
                     delete.setOnAction((e) ->{
-                        dbRegister.deleteRegistration(selectedRegistration.getRegistrationid());
+                        dbRegister.deleteRegistration(selectedRegistration.getRegistrationId());
                         tableView.getItems().remove(selectedRegistration);
                         System.out.println("Deleted "+selectedRegistration);
                     

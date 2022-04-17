@@ -34,7 +34,7 @@ public class Registration {
         this.student = student;
     }
     
-    public Integer getRegistrationid() {
+    public Integer getRegistrationId() {
         return registrationId;
     }
 }
