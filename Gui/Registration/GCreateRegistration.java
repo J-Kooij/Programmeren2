@@ -1,3 +1,5 @@
+package Programmeren2.Gui.Registration;
+
 import javafx.stage.Stage;
 
 import java.text.DateFormat;
