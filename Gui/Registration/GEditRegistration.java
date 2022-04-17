@@ -43,6 +43,7 @@ public class GEditRegistration {
         signIn.setOnAction((event) -> { 
             Registration edittedRegistration = new Registration(Date, dbCourse.getCourse(courseChoice.getValue()), registration.getStudent(), registration.getRegistrationId());
             	dbRegister.editRegistration(edittedRegistration);
+                GRegistration.showWindow(window, registration.getStudent());
         });
 
         vBox.getChildren().addAll(title, email, courseChoice, signIn);
