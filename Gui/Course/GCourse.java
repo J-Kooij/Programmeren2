@@ -5,6 +5,7 @@ import java.util.List;
 
 import Programmeren2.Database.DBCourse;
 import Programmeren2.Domain.Course;
+import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.ContentItem.GContentItem;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,7 +23,7 @@ import javafx.stage.Stage;
 public class GCourse {
     public static void showWindow(Stage window) {
         window.setTitle("CodeCademy | Courses");
-
+        BorderPane layout = new BorderPane();
         DBCourse dbCourse = new DBCourse();
         List<Course> courses = new ArrayList<>();
         courses = dbCourse.getCourses();
@@ -81,7 +83,12 @@ public class GCourse {
         Button createButton = new Button("Create");
         Button editButton = new Button("Edit");
         Button deleteButton = new Button("Delete");
-
+        Button backButton = new Button("< Back");
+        backButton.setOnAction(e -> {try {
+            Gui.showWindow(window);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        };});
         createButton.setOnAction((event) -> {
             //CRUD of courses not needed for this exercise but already made.
             GCreateCourse.showWindow(window);
@@ -94,12 +101,12 @@ public class GCourse {
         deleteButton.setOnAction((event) -> {
             //CRUD of courses not needed for this exercise 
         });
-        buttons.getChildren().addAll(createButton, editButton, deleteButton);
+        buttons.getChildren().addAll(backButton, createButton, editButton, deleteButton);
 
         vLayout.getChildren().addAll(tableView, buttons);
-
-
-        Scene scene = new Scene(vLayout, 550, 350);
+        layout.setCenter(vLayout);
+        layout.setBottom(buttons);
+        Scene scene = new Scene(layout, 550, 350);
         window.setScene(scene);
     }
 

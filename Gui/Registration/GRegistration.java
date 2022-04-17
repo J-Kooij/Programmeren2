@@ -9,6 +9,7 @@ import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.ContentItem.GContentItem;
+import Programmeren2.Gui.Student.GStudent;
 import javafx.beans.property.SimpleStringProperty;
 import Programmeren2.Database.DBStudent;
 import javafx.event.ActionEvent;
@@ -117,7 +118,7 @@ public class GRegistration {
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
         backButton.setOnAction(e -> {try {
-            Gui.showWindow(window);
+            GStudent.showWindow(window);
         } catch (Exception e1) {
             e1.printStackTrace();
         };});

@@ -12,9 +12,11 @@ import Programmeren2.Domain.Module;
 import Programmeren2.Domain.Progression;
 import Programmeren2.Domain.Student;
 import Programmeren2.Domain.Webcast;
+import Programmeren2.Gui.Course.GCourse;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -26,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class GContentItem {
@@ -186,10 +189,20 @@ public class GContentItem {
         });
 
         TabPane tabPane = new TabPane();
-
+        Button backButton = new Button("< Back");
+        backButton.setOnAction(e -> {
+            try {
+                GCourse.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(backButton, label);
         Tab modulesTab = new Tab("Modules");
         firstPage.setCenter(mTableView);
-        firstPage.setBottom(label);
+        firstPage.setBottom(hBox);
 
         modulesTab.setContent(firstPage);
 
@@ -358,10 +371,20 @@ public class GContentItem {
         // });
 
         TabPane tabPane = new TabPane();
-
+        Button backButton = new Button("< Back");
+        backButton.setOnAction(e -> {
+            try {
+                GCourse.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(backButton, label);
         Tab modulesTab = new Tab("Modules");
         firstPage.setCenter(mTableView);
-        firstPage.setBottom(label);
+        firstPage.setBottom(hBox);
 
         modulesTab.setContent(firstPage);
 
