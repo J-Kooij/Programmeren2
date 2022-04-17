@@ -10,6 +10,7 @@ import Programmeren2.Database.DBCourse;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Registration;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -19,6 +20,7 @@ import javafx.scene.layout.VBox;
 public class GEditRegistration {
     public static void showWindow(Stage window, Registration registration) {
         VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
         Label title = new Label("Sign" + registration.getStudent().getName() + "in for a course");
         Label email = new Label("Email: " + registration.getStudent().getEmail());
         ChoiceBox<String> courseChoice = new ChoiceBox<>();
