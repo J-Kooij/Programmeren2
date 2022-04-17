@@ -1,10 +1,8 @@
 package Programmeren2.Gui.Registration;
 
 import javafx.event.EventHandler;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Programmeren2.Domain.Course;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Registration;
@@ -12,13 +10,12 @@ import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.ContentItem.GContentItem;
 import javafx.beans.property.SimpleStringProperty;
-import Programmeren2.Gui.Student.GCreateStudent;
+import Programmeren2.Database.DBStudent;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -29,10 +26,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -138,15 +132,38 @@ public class GRegistration {
                 @Override
                 public void handle(ActionEvent event) {
                     final Stage dialog = new Stage();
+                    DBStudent dbStudent = new DBStudent();
+                    List<Student> students = dbStudent.getStudents();
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.initOwner(window);
                     VBox dialogVbox = new VBox(20);
                     Label title = new Label("More personal information: ");
                     title.setStyle("-fx-font-weight: bold; -fx-font-size:18");
                     dialogVbox.setAlignment(Pos.CENTER);
-                    dialogVbox.getChildren().add(title);
-                    
 
+                    
+                    TableView tableView = new TableView<>();
+                    TableColumn<Student, String> column1 = new TableColumn<>("Address");
+                    column1.setCellValueFactory(new PropertyValueFactory<>("Address"));
+                    column1.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+            
+                    TableColumn<Student, String> column2 = new TableColumn<>("City");
+                    column2.setCellValueFactory(new PropertyValueFactory<>("City"));
+                    column2.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+            
+                    TableColumn<Student, String> column3 = new TableColumn<>("Country");
+                    column3.setCellValueFactory(new PropertyValueFactory<>("Country"));
+                    column3.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+
+                    tableView.getColumns().add(column1);
+                    tableView.getColumns().add(column2);
+                    tableView.getColumns().add(column3);
+
+                    for (Student s : students) {
+                        tableView.getItems().add(s);
+                    }
+
+                    dialogVbox.getChildren().addAll(title, tableView);
                     Scene dialogScene = new Scene(dialogVbox, 350, 225);
                     dialog.setTitle("Student info");
                     dialog.setScene(dialogScene);
