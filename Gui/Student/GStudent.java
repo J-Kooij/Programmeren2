@@ -5,8 +5,10 @@ import javafx.geometry.Insets;
 
 import java.util.List;
 
+import javax.sound.sampled.SourceDataLine;
 import javax.swing.table.JTableHeader;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import Programmeren2.Database.DBStudent;
 import Programmeren2.Domain.Student;
@@ -15,7 +17,9 @@ import Programmeren2.Gui.Course.GCourse;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,16 +43,14 @@ public class GStudent {
         column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(4));
 
-        
         tableView.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944); -fx-background-radius: 7px 7px 0px 0px; -fx-padding: 0 0 5px 0;");
         column1.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
 
-        
         TableColumn<Student, String> column2 = new TableColumn<>("Email");
         column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
         column2.prefWidthProperty().bind(tableView.widthProperty().divide(4));
         column2.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
- 
+
         TableColumn<Student, String> column3 = new TableColumn<>("Gender");
         column3.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         column3.prefWidthProperty().bind(tableView.widthProperty().divide(4));
@@ -79,46 +81,70 @@ public class GStudent {
         // tableView.getColumns().add(column6);
         // tableView.getColumns().add(column7);
 
-        for(Student s : students){
+        for (Student s : students) {
             tableView.getItems().add(s);
         }
 
-                // Event on double click item
-                tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if (event.getClickCount() ==2){
-        
-                            Student clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
-                                        
-                            GRegistration.showWindow(window, clickedItem);
-                        }
-                        
-                    }
-                    
-                });
+        final ContextMenu contextMenu = new ContextMenu();
+        MenuItem edit = new MenuItem("Edit");
+        MenuItem delete = new MenuItem("Delete");
+        contextMenu.getItems().addAll(edit, delete);
 
-        //Setting layout for buttons at bottom
+        // Event on click
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    contextMenu.hide();
+
+                    event.consume();
+                    Student selectedStudent = tableView.getSelectionModel().selectedItemProperty().get();
+
+                    contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
+
+                    edit.setOnAction((e) -> {
+                        // TODO ADD GUI FOR EDIT STUDENT
+                    });
+                    delete.setOnAction((e) -> {
+                        dbStudent.deleteStudents(selectedStudent.getEmail());
+                        tableView.getItems().remove(selectedStudent);
+                        System.out.println("Deleted " + selectedStudent);
+
+                    });
+
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                    Student clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                    GRegistration.showWindow(window, clickedItem);
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                    contextMenu.hide();
+                }
+            }
+        });
+
+        // Setting layout for buttons at bottom
         HBox lHBox = new HBox();
         lHBox.setStyle("-fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b955);");
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
-        backButton.setOnAction(e -> {try {
-            Gui.showWindow(window);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        };});
+        backButton.setOnAction(e -> {
+            try {
+                Gui.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
         backButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
         Button createButton = new Button("Create");
         createButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
-        createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
-        Button editButton = new Button("Edit");
-        editButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
-        Button deleteButton = new Button("Delete");
-        deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: black;-fx-font-weight: bold");
-        
+        createButton.setOnAction(e -> {
+            GCreateStudent.showWindow(window);
+        });
+
         lHBox.setSpacing(10);
-        lHBox.getChildren().addAll(backButton, createButton, editButton, deleteButton);
+        lHBox.getChildren().addAll(backButton, createButton);
         Scene scene = new Scene(layout, 500, 250);
         window.setScene(scene);
     }
