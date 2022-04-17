@@ -2,9 +2,6 @@ package Programmeren2.Database;
 
 import java.sql.*;
 
-/**
- * Dit is een voorbeeld Java toepassing waarin je verbinding maakt met een SQLServer database.
- */
 public class Database {
     protected Connection connection;
 

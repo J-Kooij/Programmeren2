@@ -7,7 +7,6 @@ import Programmeren2.Domain.Course;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
-import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.ContentItem.GContentItem;
 import Programmeren2.Gui.Student.GStudent;
 import javafx.beans.property.SimpleStringProperty;
@@ -91,7 +90,6 @@ public class GRegistration {
                     contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
                     
                     edit.setOnAction((e) ->{
-                        // TODO ADD GUI FOR EDIT REGISTER
                         GEditRegistration.showWindow(window, selectedRegistration);
                     });
                     delete.setOnAction((e) ->{
@@ -118,12 +116,14 @@ public class GRegistration {
         HBox lHBox = new HBox();
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {try {
             GStudent.showWindow(window);
         } catch (Exception e1) {
             e1.printStackTrace();
         };});
         Button createButton = new Button("Create");
+        createButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         createButton.setOnAction(e -> {GCreateRegistration.showWindow(window, student);});
         Button infoButton = new Button("🛈 More info");
         lHBox.setMargin(infoButton, new Insets(0, 0, 0, 225));

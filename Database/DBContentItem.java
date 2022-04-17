@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Programmeren2.Domain.ContactPerson;
-import Programmeren2.Domain.ContentItem;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Module;
 import Programmeren2.Domain.Speaker;

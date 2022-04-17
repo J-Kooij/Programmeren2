@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Programmeren2.Database.DBContentItem;
-import Programmeren2.Database.DBCourse;
 import Programmeren2.Database.DBProgression;
-import Programmeren2.Domain.ContentItem;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Module;
 import Programmeren2.Domain.Progression;
@@ -17,9 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -421,6 +417,7 @@ public class GContentItem {
 
         TabPane tabPane = new TabPane();
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {
             try {
                 GCourse.showWindow(window);

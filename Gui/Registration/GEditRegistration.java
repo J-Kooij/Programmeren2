@@ -10,7 +10,6 @@ import Programmeren2.Database.DBCourse;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Registration;
-import Programmeren2.Domain.Student;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -24,8 +23,6 @@ public class GEditRegistration {
         Label email = new Label("Email: " + registration.getStudent().getEmail());
         ChoiceBox<String> courseChoice = new ChoiceBox<>();
         courseChoice.setValue(registration.getCourse().getCourseName());
-        // Moet loop komen die alle courses add vanuit arraylist
-        // niet vergeten type naar Course veranderen
         DBCourse dbCourse = new DBCourse();
         List<Course> courses = dbCourse.getCourses();
         for(Course c: courses){

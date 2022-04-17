@@ -49,7 +49,6 @@ public class GEditStudent {
         genderChoice.getItems().add(Gender.MALE.getValue());
         genderChoice.getItems().add(Gender.FEMALE.getValue());
         genderChoice.getItems().add(Gender.NONE.getValue());
-        // Tijdelijk een choicebox wellicht binnenkort checkbox ipv choiceboix?
 
         Label birthDate = new Label("Birthdate:");
         DatePicker birthDatePicker = new DatePicker();
@@ -89,6 +88,7 @@ public class GEditStudent {
         });
 
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {
             try {
                 Gui.showWindow(window);
