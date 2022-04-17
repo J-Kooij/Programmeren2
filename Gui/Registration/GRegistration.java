@@ -1,0 +1,164 @@
+package Programmeren2.Gui.Registration;
+
+import javafx.event.EventHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Programmeren2.Database.DBRegister;
+import Programmeren2.Domain.Registration;
+import Programmeren2.Domain.Student;
+import Programmeren2.Gui.Gui;
+import javafx.beans.property.SimpleStringProperty;
+import Programmeren2.Gui.Student.GCreateStudent;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+public class GRegistration {
+    public static void showWindow(Stage window, Student student){ 
+        BorderPane layout = new BorderPane();
+        DBRegister dbRegister = new DBRegister();
+        List<Registration> registrations = new ArrayList<>();
+        registrations = dbRegister.getRegistrations(student);
+        VBox vBox = new VBox();
+        Label title = new Label("Student: xxx");
+        title.setPadding(new Insets(0, 0, 5, 0));
+        vBox.setAlignment(Pos.CENTER);
+        title.setStyle("-fx-font-weight: bold; -fx-font-size:25");
+
+        Label subtitle = new Label("Registrations of Student:");
+        subtitle.setStyle("-fx-font-weight: bold; -fx-font-size:17");
+        layout.setTop(vBox);
+        vBox.getChildren().addAll(title, subtitle);
+
+
+        TableView<Registration> tableView = new TableView<>();
+        layout.setCenter(tableView);
+
+        TableColumn<Registration, String> column1 = new TableColumn<>("Course name:");
+        column1.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCourse().getCourseName()));
+        column1.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+
+        TableColumn<Registration, String> column2 = new TableColumn<>("Student:");
+        column2.setCellValueFactory((c -> new SimpleStringProperty(c.getValue().getStudent().getEmail())));
+        column2.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+
+        TableColumn<Registration, String> column3 = new TableColumn<>("Registration Date: ");
+        column3.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
+        column3.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+        tableView.getColumns().add(column3);
+
+        for(Registration r : registrations){
+            tableView.getItems().add(r);
+        }
+
+        final ContextMenu contextMenu = new ContextMenu();
+        MenuItem edit = new MenuItem("Edit");
+        MenuItem delete = new MenuItem("Delete");
+        contextMenu.getItems().addAll(edit, delete);
+        
+        // Event on click
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    contextMenu.hide();
+
+                    event.consume();
+                    Registration selectedRegistration = tableView.getSelectionModel().selectedItemProperty().get();
+                   
+
+                    contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
+                    
+                    edit.setOnAction((e) ->{
+                        // TODO ADD GUI FOR EDIT REGISTER
+                    });
+                    delete.setOnAction((e) ->{
+                        dbRegister.deleteRegistration(selectedRegistration);
+                        tableView.getItems().remove(selectedRegistration);
+                        System.out.println("Deleted "+selectedRegistration);
+                    
+                    });
+                    
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                    Registration clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                    //.showWindow(window, clickedItem);
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                    contextMenu.hide();
+                }
+            }
+        });
+
+        
+
+        HBox lHBox = new HBox();
+        layout.setBottom(lHBox);
+        Button backButton = new Button("< Back");
+        backButton.setOnAction(e -> {try {
+            Gui.showWindow(window);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        };});
+        Button createButton = new Button("Create");
+        createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
+        Button infoButton = new Button("🛈 More info");
+        lHBox.setMargin(infoButton, new Insets(0, 0, 0, 225));
+
+        //Pop-up for more information about the student
+        infoButton.setOnAction(
+            new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    final Stage dialog = new Stage();
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    dialog.initOwner(window);
+                    VBox dialogVbox = new VBox(20);
+                    Label title = new Label("More personal information: ");
+                    title.setStyle("-fx-font-weight: bold; -fx-font-size:18");
+                    dialogVbox.setAlignment(Pos.CENTER);
+                    dialogVbox.getChildren().add(title);
+                    
+
+                    Scene dialogScene = new Scene(dialogVbox, 350, 225);
+                    dialog.setTitle("Student info");
+                    dialog.setScene(dialogScene);
+                    dialog.show();
+                }
+             });
+        
+        lHBox.setSpacing(10);
+        lHBox.getChildren().addAll(backButton, createButton, infoButton);
+        window.setTitle("Codecademy | Students | Registrations");
+        Scene scene = new Scene(layout, 550, 350);
+        window.setScene(scene);
+
+
+    }
+
+    
+}
