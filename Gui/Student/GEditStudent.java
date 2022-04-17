@@ -41,7 +41,8 @@ public class GEditStudent {
 
         Label email = new Label("Email:");
         TextField emailTextField = new TextField();
-        emailTextField.setPromptText(student.getEmail());
+        emailTextField.setText(student.getEmail());
+        emailTextField.setDisable(true);
 
         Label gender = new Label("Gender: ");
         ComboBox<String> genderChoice = new ComboBox<>();
@@ -71,7 +72,6 @@ public class GEditStudent {
         rVBox.setMargin(createStudentButton, new Insets(15, 0, 0, 0));
 
         createStudentButton.setOnAction((event) -> {
-            System.out.println(birthDatePicker.getValue().toString());
             String studentName = nameTextField.getText();
             String studentEmail = emailTextField.getText();
             Gender studentGender = Gender.convertToGender(genderChoice.getValue());
@@ -84,7 +84,8 @@ public class GEditStudent {
 
             Student Edittedstudent = new Student(studentName, studentEmail, studentGender, studentBirthDate, studentAddress,
                     studentCity, studentCountry);
-            dbStudent.createStudents(student);
+            dbStudent.editStudents(Edittedstudent);
+            GStudent.showWindow(window);
         });
 
         Button backButton = new Button("< Back");
