@@ -84,6 +84,7 @@ public class GCreateStudent {
             Student student = new Student(studentName, studentEmail, studentGender, studentBirthDate, studentAddress,
                     studentCity, studentCountry);
             dbStudent.createStudents(student);
+            GStudent.showWindow(window);
         });
 
         Button backButton = new Button("< Back");

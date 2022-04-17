@@ -92,6 +92,7 @@ public class GRegistration {
                     
                     edit.setOnAction((e) ->{
                         // TODO ADD GUI FOR EDIT REGISTER
+                        GEditRegistration.showWindow(window, selectedRegistration);
                     });
                     delete.setOnAction((e) ->{
                         dbRegister.deleteRegistration(selectedRegistration.getRegistrationId());

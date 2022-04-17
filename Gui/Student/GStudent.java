@@ -81,6 +81,7 @@ public class GStudent {
 
                     edit.setOnAction((e) -> {
                         // TODO ADD GUI FOR EDIT STUDENT
+                        GEditStudent.showWindow(window, selectedStudent);
                     });
                     delete.setOnAction((e) -> {
                         dbStudent.deleteStudents(selectedStudent.getEmail());
