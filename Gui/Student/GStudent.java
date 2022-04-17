@@ -12,6 +12,7 @@ import Programmeren2.Database.DBStudent;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.Course.GCourse;
+import Programmeren2.Gui.Registration.GRegistration;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
