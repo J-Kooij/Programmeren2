@@ -2,12 +2,12 @@ package Programmeren2.Domain;
 
 public class Progression {
     Student student;
-    Course course;
+    ContentItem contentItem;
     int percentage;
     
-    public Progression(Student student, Course course, int percentage) {
+    public Progression(Student student, ContentItem contentItem, int percentage) {
         this.student = student;
-        this.course = course;
+        this.contentItem = contentItem;
         this.percentage = percentage;
     }
     public Student getStudent() {
@@ -16,11 +16,11 @@ public class Progression {
     public void setStudent(Student student) {
         this.student = student;
     }
-    public Course getCourse() {
-        return course;
+    public ContentItem getCourse() {
+        return contentItem;
     }
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourse(ContentItem contentItem) {
+        this.contentItem = contentItem;
     }
     public int getPercentage() {
         return percentage;
