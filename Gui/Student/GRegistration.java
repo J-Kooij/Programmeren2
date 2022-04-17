@@ -1,17 +1,29 @@
 package Programmeren2.Gui.Student;
 
 import javafx.event.EventHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Programmeren2.Database.DBRegister;
+import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
@@ -24,6 +36,9 @@ import javafx.stage.Stage;
 public class GRegistration {
     public static void showWindow(Stage window, Student student){ 
         BorderPane layout = new BorderPane();
+        DBRegister dbRegister = new DBRegister();
+        List<Registration> registrations = new ArrayList<>();
+        registrations = dbRegister.getRegistrations(student);
         VBox vBox = new VBox();
         Label title = new Label("Student: xxx");
         title.setPadding(new Insets(0, 0, 5, 0));
@@ -36,28 +51,70 @@ public class GRegistration {
         vBox.getChildren().addAll(title, subtitle);
 
 
-        TableView<Student> tableView = new TableView<>();
+        TableView<Registration> tableView = new TableView<>();
         layout.setCenter(tableView);
 
-        TableColumn<Student, String> column1 = new TableColumn<>("Course name:");
-        column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TableColumn<Registration, String> column1 = new TableColumn<>("Course name:");
+        column1.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCourse().getCourseName()));
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(3));
 
-        TableColumn<Student, String> column2 = new TableColumn<>("Student:");
-        column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        TableColumn<Registration, String> column2 = new TableColumn<>("Student:");
+        column2.setCellValueFactory((c -> new SimpleStringProperty(c.getValue().getStudent().getEmail())));
         column2.prefWidthProperty().bind(tableView.widthProperty().divide(3));
 
-        TableColumn<Student, String> column3 = new TableColumn<>("Registration Date: ");
-        column3.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        TableColumn<Registration, String> column3 = new TableColumn<>("Registration Date: ");
+        column3.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
         column3.prefWidthProperty().bind(tableView.widthProperty().divide(3));
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
         tableView.getColumns().add(column3);
 
-        // for(Student s : students){
-        //     tableView.getItems().add(s);
-        // }
+        for(Registration r : registrations){
+            tableView.getItems().add(r);
+        }
+
+        final ContextMenu contextMenu = new ContextMenu();
+        MenuItem edit = new MenuItem("Edit");
+        MenuItem delete = new MenuItem("Delete");
+        contextMenu.getItems().addAll(edit, delete);
+        
+        // Event on click
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    contextMenu.hide();
+
+                    event.consume();
+                    Registration selectedRegistration = tableView.getSelectionModel().selectedItemProperty().get();
+                   
+
+                    contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
+                    
+                    edit.setOnAction((e) ->{
+                        // TODO ADD GUI FOR EDIT REGISTER
+                    });
+                    delete.setOnAction((e) ->{
+                        dbRegister.deleteRegistration(selectedRegistration);
+                        tableView.getItems().remove(selectedRegistration);
+                        System.out.println("Deleted "+selectedRegistration);
+                    
+                    });
+                    
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                    Registration clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                    //.showWindow(window, clickedItem);
+                }
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                    contextMenu.hide();
+                }
+            }
+        });
+
+        
+
         HBox lHBox = new HBox();
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
@@ -68,8 +125,6 @@ public class GRegistration {
         };});
         Button createButton = new Button("Create");
         createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
-        Button editButton = new Button("Edit");
-        Button deleteButton = new Button("Delete");
         Button infoButton = new Button("🛈 More info");
         lHBox.setMargin(infoButton, new Insets(0, 0, 0, 225));
 
@@ -96,11 +151,13 @@ public class GRegistration {
              });
         
         lHBox.setSpacing(10);
-        lHBox.getChildren().addAll(backButton, createButton, editButton, deleteButton, infoButton);
+        lHBox.getChildren().addAll(backButton, createButton, infoButton);
         window.setTitle("Codecademy | Students | Registrations");
         Scene scene = new Scene(layout, 550, 350);
         window.setScene(scene);
 
 
     }
+
+    
 }
