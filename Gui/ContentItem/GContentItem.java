@@ -198,7 +198,7 @@ public class GContentItem {
 
         tabPane.getTabs().addAll(modulesTab, webcastsTab);
 
-        Scene scene = new Scene(tabPane);
+        Scene scene = new Scene(tabPane, 1050, 750);
         window.setScene(scene);
     }
 
@@ -370,7 +370,7 @@ public class GContentItem {
 
         tabPane.getTabs().addAll(modulesTab, webcastsTab);
 
-        Scene scene = new Scene(tabPane);
+        Scene scene = new Scene(tabPane, 1050, 750);
         window.setScene(scene);
     }
 }
