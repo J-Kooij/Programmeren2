@@ -60,7 +60,7 @@ public class DBRegister extends Database {
     public void editRegistration(Registration registration) {
         String query = "UPDATE Register SET RegistrationDate = ?, CourseName = ?, StudentEmail = ? WHERE RegistrationId = ? ";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
-            stmt.setDate(2, new java.sql.Date(registration.getRegistrationDate().getTime()));
+            stmt.setString(2, registration.getRegistrationDate().toString());
             stmt.setString(1, registration.getCourse().getCourseName());
             stmt.setString(3, registration.getStudent().getEmail());
             stmt.setInt(4, registration.getRegistrationId());
