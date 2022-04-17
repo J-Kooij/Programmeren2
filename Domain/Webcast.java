@@ -26,9 +26,9 @@ public class Webcast extends ContentItem{
     }
 
     @Override
-    public String getDescriptionl() {
+    public String getDescription() {
         // TODO Auto-generated method stub
-        return super.getDescriptionl();
+        return super.getDescription();
     }
 
     @Override
@@ -50,9 +50,9 @@ public class Webcast extends ContentItem{
     }
 
     @Override
-    public void setDescriptionl(String descriptionl) {
+    public void setDescription(String description) {
         // TODO Auto-generated method stub
-        super.setDescriptionl(descriptionl);
+        super.setDescription(description);
     }
 
     @Override

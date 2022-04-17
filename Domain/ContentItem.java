@@ -33,11 +33,11 @@ public abstract class ContentItem {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getDescriptionl() {
+    public String getDescription() {
         return description;
     }
-    public void setDescriptionl(String descriptionl) {
-        this.description = descriptionl;
+    public void setDescription(String description) {
+        this.description = description;
     }
     public Status getStatus() {
         return status;
