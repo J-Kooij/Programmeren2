@@ -103,12 +103,12 @@ public class DBStudent extends Database{
                 stmt.setString(6, student.getCity());
                 stmt.setString(7, student.getCountry());
 
-                stmt.setString(1, student.getEmail());
+                stmt.setString(8, student.getEmail());
 
                 stmt.executeUpdate();
             System.out.print("[DBStudent]: Succesfull edited student");
         } catch (Exception e) {
-            System.out.print("[DBStudent]: Error edited students: " + e.toString());
+            System.out.print("[DBStudent]: Error editted students: " + e.toString());
         }
     }
 
