@@ -80,10 +80,6 @@ public class GCourse {
 
         HBox buttons = new HBox();
         buttons.setSpacing(10);
-        Button createButton = new Button("Create");
-        createButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
-        Button editButton = new Button("Edit");
-        Button deleteButton = new Button("Delete");
         Button backButton = new Button("< Back");
         backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {try {
@@ -91,20 +87,8 @@ public class GCourse {
         } catch (Exception e1) {
             e1.printStackTrace();
         };});
-        createButton.setOnAction((event) -> {
-            //CRUD of courses not needed for this exercise but already made.
-            GCreateCourse.showWindow(window);
-        });
 
-        editButton.setOnAction((event) -> {
-            //CRUD of courses not needed for this exercise 
-        });
-
-        deleteButton.setOnAction((event) -> {
-            //CRUD of courses not needed for this exercise 
-        });
-        buttons.getChildren().addAll(backButton, createButton, editButton, deleteButton);
-
+        buttons.getChildren().addAll(backButton);
         vLayout.getChildren().addAll(tableView, buttons);
         layout.setCenter(vLayout);
         layout.setBottom(buttons);

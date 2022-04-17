@@ -32,7 +32,6 @@ public class GStudent {
         column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(4));
 
-        tableView.setStyle("-fx-background-color: linear-gradient(to bottom, #9CC0E7, #EEEEEE); -fx-background-radius: 7px 7px 0px 0px; -fx-padding: 0 0 5px 0;");
 
         TableColumn<Student, String> column2 = new TableColumn<>("Email");
         column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
