@@ -5,10 +5,12 @@ import javafx.event.EventHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import Programmeren2.Domain.Course;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
+import Programmeren2.Gui.ContentItem.GContentItem;
 import javafx.beans.property.SimpleStringProperty;
 import Programmeren2.Gui.Student.GCreateStudent;
 import javafx.event.ActionEvent;
@@ -105,7 +107,8 @@ public class GRegistration {
                     
                 }
                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                    Registration clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                    Course clickedItem = tableView.getSelectionModel().selectedItemProperty().get().getCourse();
+                    GContentItem.showWindow(window, clickedItem, student);
                     //.showWindow(window, clickedItem);
                 }
                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {

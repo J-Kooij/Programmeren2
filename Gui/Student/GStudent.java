@@ -46,25 +46,22 @@ public class GStudent {
         column1.prefWidthProperty().bind(tableView.widthProperty().divide(4));
 
         tableView.setStyle("-fx-background-color: linear-gradient(to bottom, #9CC0E7, #EEEEEE); -fx-background-radius: 7px 7px 0px 0px; -fx-padding: 0 0 5px 0;");
-        column1.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
-
-        TableRow tableRow = new TableRow();
-        tableRow.setStyle("-fx-background-color: white");
+        column1.setStyle("-fx-background-color: #9CC0E7;");
 
         TableColumn<Student, String> column2 = new TableColumn<>("Email");
         column2.setCellValueFactory(new PropertyValueFactory<>("Email"));
         column2.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column2.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
+        column2.setStyle("-fx-background-color: #9CC0E7;");
 
         TableColumn<Student, String> column3 = new TableColumn<>("Gender");
         column3.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         column3.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column3.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
+        column3.setStyle("-fx-background-color: #9CC0E7;");
 
         TableColumn<Student, String> column4 = new TableColumn<>("Birthdate");
         column4.setCellValueFactory(new PropertyValueFactory<>("BirthDate"));
         column4.prefWidthProperty().bind(tableView.widthProperty().divide(4));
-        column4.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1);");
+        column4.setStyle("-fx-background-color: #9CC0E7;");
 
         TableColumn<Student, String> column5 = new TableColumn<>("Address");
         column5.setCellValueFactory(new PropertyValueFactory<>("Address"));
