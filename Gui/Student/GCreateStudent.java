@@ -87,6 +87,7 @@ public class GCreateStudent {
         });
 
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {
             try {
                 Gui.showWindow(window);

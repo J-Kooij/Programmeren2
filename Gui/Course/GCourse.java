@@ -81,9 +81,11 @@ public class GCourse {
         HBox buttons = new HBox();
         buttons.setSpacing(10);
         Button createButton = new Button("Create");
+        createButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         Button editButton = new Button("Edit");
         Button deleteButton = new Button("Delete");
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {try {
             Gui.showWindow(window);
         } catch (Exception e1) {

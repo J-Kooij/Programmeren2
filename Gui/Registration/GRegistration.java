@@ -116,12 +116,14 @@ public class GRegistration {
         HBox lHBox = new HBox();
         layout.setBottom(lHBox);
         Button backButton = new Button("< Back");
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         backButton.setOnAction(e -> {try {
             GStudent.showWindow(window);
         } catch (Exception e1) {
             e1.printStackTrace();
         };});
         Button createButton = new Button("Create");
+        createButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
         createButton.setOnAction(e -> {GCreateRegistration.showWindow(window, student);});
         Button infoButton = new Button("🛈 More info");
         lHBox.setMargin(infoButton, new Insets(0, 0, 0, 225));

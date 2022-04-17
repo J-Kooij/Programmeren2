@@ -8,7 +8,6 @@ import java.util.List;
 import Programmeren2.Domain.ContentItem;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Progression;
-import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
 
 public class DBProgression extends Database {
