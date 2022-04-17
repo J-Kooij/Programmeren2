@@ -10,7 +10,6 @@ import Programmeren2.Database.DBCourse;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Course;
 import Programmeren2.Domain.Registration;
-import Programmeren2.Domain.Student;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;

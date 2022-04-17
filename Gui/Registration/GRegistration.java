@@ -7,7 +7,6 @@ import Programmeren2.Domain.Course;
 import Programmeren2.Database.DBRegister;
 import Programmeren2.Domain.Registration;
 import Programmeren2.Domain.Student;
-import Programmeren2.Gui.Gui;
 import Programmeren2.Gui.ContentItem.GContentItem;
 import Programmeren2.Gui.Student.GStudent;
 import javafx.beans.property.SimpleStringProperty;
