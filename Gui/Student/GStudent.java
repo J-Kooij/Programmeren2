@@ -1,7 +1,8 @@
 package Programmeren2.Gui.Student;
 
+import javafx.event.EventHandler;
 import java.util.List;
-
+import javafx.scene.input.MouseEvent;
 import Programmeren2.Database.DBStudent;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
@@ -23,9 +24,6 @@ public class GStudent {
     public static void showWindow(Stage window) {
         window.setTitle("CodeCademy | Students");
         BorderPane layout = new BorderPane();
-        Label label1 = new Label("test");
-
-        layout.getChildren().addAll(label1);
 
         DBStudent dbStudent = new DBStudent();
         List<Student> students = dbStudent.getStudents();
@@ -71,6 +69,21 @@ public class GStudent {
         for(Student s : students){
             tableView.getItems().add(s);
         }
+
+                // Event on double click item
+                tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getClickCount() ==2){
+        
+                            Student clickedItem = tableView.getSelectionModel().selectedItemProperty().get();
+                                        
+                            GRegistration.showWindow(window, clickedItem);
+                        }
+                        
+                    }
+                    
+                });
 
         //Setting layout for buttons at bottom
         HBox lHBox = new HBox();
