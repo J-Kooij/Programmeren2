@@ -53,7 +53,7 @@ public class GWebcastStatistics {
             for (Progression w : webcasts) {
                 wTableView.getItems().add(w);
             }
-        } if(webcasts.size() >= 0 && webcasts.size() < 3) {
+        } else if(webcasts.size() > 3 ) {
             for (int i = 0; i < 3; i++) {
                 wTableView.getItems().add(webcasts.get(i));
             }
