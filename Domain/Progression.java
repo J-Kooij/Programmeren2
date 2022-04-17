@@ -16,10 +16,10 @@ public class Progression {
     public void setStudent(Student student) {
         this.student = student;
     }
-    public ContentItem getCourse() {
+    public ContentItem contentItem() {
         return contentItem;
     }
-    public void setCourse(ContentItem contentItem) {
+    public void contentItem(ContentItem contentItem) {
         this.contentItem = contentItem;
     }
     public int getPercentage() {
