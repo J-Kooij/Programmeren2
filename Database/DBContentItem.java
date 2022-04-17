@@ -70,10 +70,12 @@ public class DBContentItem extends Database {
                     Status status = Status.convertToStatus(results.getString("Status"));
                     String speakerName = results.getString("Speaker");
                     String SpeakerOrganisation = results.getString("Organisation");
+                    String url = results.getString("URL");
+                    int length = results.getInt("LengthInMinutes");
     
                     Speaker speaker = new Speaker(speakerName, SpeakerOrganisation);
 
-                    Webcast webcast = new Webcast(contentItemId, publicationDate, title, description, status, speaker);
+                    Webcast webcast = new Webcast(contentItemId, publicationDate, title, description, status, speaker, length, url);
                     webcasts.add(webcast);
 
                 }
