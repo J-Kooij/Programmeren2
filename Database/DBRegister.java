@@ -73,7 +73,7 @@ public class DBRegister extends Database {
     }
 
     public void deleteRegistration(Integer registrationId) {
-        String query = "DELETE FROM Registration WHERE email = ? ";
+        String query = "DELETE FROM Register WHERE email = ? ";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
 
             stmt.setInt(1, registrationId);
