@@ -97,7 +97,7 @@ public class GRegistration {
                         // TODO ADD GUI FOR EDIT REGISTER
                     });
                     delete.setOnAction((e) ->{
-                        dbRegister.deleteRegistration(selectedRegistration);
+                        dbRegister.deleteRegistration(selectedRegistration.getRegistrationid());
                         tableView.getItems().remove(selectedRegistration);
                         System.out.println("Deleted "+selectedRegistration);
                     
@@ -125,7 +125,7 @@ public class GRegistration {
             e1.printStackTrace();
         };});
         Button createButton = new Button("Create");
-        createButton.setOnAction(e -> {GCreateStudent.showWindow(window);});
+        createButton.setOnAction(e -> {GCreateRegistration.showWindow(window, student);});
         Button infoButton = new Button("🛈 More info");
         lHBox.setMargin(infoButton, new Insets(0, 0, 0, 225));
 
