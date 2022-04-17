@@ -82,8 +82,14 @@ public class GRegistration {
                     dialog.initModality(Modality.APPLICATION_MODAL);
                     dialog.initOwner(window);
                     VBox dialogVbox = new VBox(20);
-                    dialogVbox.getChildren().add(new Text("This is a Dialog"));
-                    Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                    Label title = new Label("More personal information: ");
+                    title.setStyle("-fx-font-weight: bold; -fx-font-size:18");
+                    dialogVbox.setAlignment(Pos.CENTER);
+                    dialogVbox.getChildren().add(title);
+                    
+
+                    Scene dialogScene = new Scene(dialogVbox, 350, 225);
+                    dialog.setTitle("Student info");
                     dialog.setScene(dialogScene);
                     dialog.show();
                 }
@@ -91,6 +97,7 @@ public class GRegistration {
         
         lHBox.setSpacing(10);
         lHBox.getChildren().addAll(backButton, createButton, editButton, deleteButton, infoButton);
+        window.setTitle("Codecademy | Students | Registrations");
         Scene scene = new Scene(layout, 550, 350);
         window.setScene(scene);
 
