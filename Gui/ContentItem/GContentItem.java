@@ -29,6 +29,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class GContentItem {
@@ -42,8 +43,8 @@ public class GContentItem {
         List<Module> modules = new ArrayList<>();
         modules = dbContentItem.getModules(course);
 
-        Label label = new Label("hi");
-        BorderPane firstPage = new BorderPane();
+
+
         TableView<Module> mTableView = new TableView<>();
 
         TableColumn<Module, String> mColumn1 = new TableColumn<>("Title");
@@ -90,7 +91,8 @@ public class GContentItem {
         for (Module Module : modules) {
             mTableView.getItems().add(Module);
         }
-
+        Label label = new Label("  Progression: ");
+        label.setFont(new Font("Arial", 23));
         // Event on click
         mTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -104,7 +106,7 @@ public class GContentItem {
 
                     for (int i = 0; i < progressions.size(); i++) {
                         if (selectedModule.getContentItemId() == progressions.get(i).getContentItem().getContentItemId()&& progressions.get(i).getStudent().getEmail() == student.getEmail())
-                        label.setText(progressions.get(i).getPercentage() + " Procent");
+                        label.setText("  Progression: "+progressions.get(i).getPercentage() + " Procent");
                     }
 
                 }
@@ -120,31 +122,39 @@ public class GContentItem {
 
         TableColumn<Webcast, String> wColumn1 = new TableColumn<>("Title");
         wColumn1.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        wColumn1.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn1.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
 
         TableColumn<Webcast, String> wColumn2 = new TableColumn<>("Description");
         wColumn2.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        wColumn2.prefWidthProperty().bind(wTableView.widthProperty().divide(3.7));
+        wColumn2.prefWidthProperty().bind(wTableView.widthProperty().divide(4.9));
 
         TableColumn<Webcast, String> wColumn3 = new TableColumn<>("Publication Date");
         wColumn3.setCellValueFactory(new PropertyValueFactory<>("PublicationDate"));
-        wColumn3.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn3.prefWidthProperty().bind(wTableView.widthProperty().divide(9.5));
 
         TableColumn<Webcast, String> wColumn4 = new TableColumn<>("Status");
         wColumn4.setCellValueFactory(new PropertyValueFactory<>("Status"));
-        wColumn4.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+        wColumn4.prefWidthProperty().bind(wTableView.widthProperty().divide(12.5));
 
         TableColumn<Webcast, String> wColumn5 = new TableColumn<>("Serialnumber");
         wColumn5.setCellValueFactory(new PropertyValueFactory<>("ContentItemId"));
-        wColumn5.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+        wColumn5.prefWidthProperty().bind(wTableView.widthProperty().divide(12));
 
         TableColumn<Webcast, String> wColumn6 = new TableColumn<>("Speaker name");
         wColumn6.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getSpeakerName()));
-        wColumn6.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn6.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
 
         TableColumn<Webcast, String> wColumn7 = new TableColumn<>("Organisation");
         wColumn7.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getOrganisationOfSpeaker()));
-        wColumn7.prefWidthProperty().bind(wTableView.widthProperty().divide(7.5));
+        wColumn7.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+
+        TableColumn<Webcast, String> wColumn8 = new TableColumn<>("Duration(min)");
+        wColumn8.setCellValueFactory(new PropertyValueFactory<>("lengthInMinute"));
+        wColumn8.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
+
+        TableColumn<Webcast, String> wColumn9 = new TableColumn<>("Url");
+        wColumn9.setCellValueFactory(new PropertyValueFactory<>("url"));
+        wColumn9.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
 
         wTableView.getColumns().add(wColumn1);
         wTableView.getColumns().add(wColumn2);
@@ -153,11 +163,14 @@ public class GContentItem {
         wTableView.getColumns().add(wColumn5);
         wTableView.getColumns().add(wColumn6);
         wTableView.getColumns().add(wColumn7);
+        wTableView.getColumns().add(wColumn8);
+        wTableView.getColumns().add(wColumn9);
 
         for (Webcast webcast : webcasts) {
             wTableView.getItems().add(webcast);
         }
-
+        Label label2 = new Label("  Progression: ");
+        label.setFont(new Font("Arial", 23));
         // Event on click
         wTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -176,10 +189,9 @@ public class GContentItem {
 
                         }
                         if (selectedWebcast.getContentItemId() == progressions.get(current).getContentItem().getContentItemId()) {
-                            label.setText(progressions.get(i).getPercentage() + " Procent");
-                            System.out.println(progressions.get(i).getPercentage()+"");
+                            label.setText("  Progression: "+progressions.get(i).getPercentage() + " Procent");
                         } else {
-                            System.out.println("0 Procent");
+                            System.out.println("  Progression: 0 Procent");
                         }
                     }
 
@@ -187,6 +199,7 @@ public class GContentItem {
                 }
             }
         });
+        BorderPane firstPage = new BorderPane();
 
         TabPane tabPane = new TabPane();
         Button backButton = new Button("< Back");
@@ -203,11 +216,25 @@ public class GContentItem {
         Tab modulesTab = new Tab("Modules");
         firstPage.setCenter(mTableView);
         firstPage.setBottom(hBox);
-
         modulesTab.setContent(firstPage);
 
+        Button backButton2 = new Button("< Back");
+        backButton.setOnAction(e -> {
+            try {
+                GCourse.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
+        BorderPane secondPage = new BorderPane();
         Tab webcastsTab = new Tab("Webcasts");
-        webcastsTab.setContent(wTableView);
+        HBox hBox2 = new HBox();
+        hBox2.getChildren().addAll(backButton2, label2);
+        secondPage.setCenter(wTableView);
+        secondPage.setBottom(hBox2);
+
+        webcastsTab.setContent(secondPage);
 
         tabPane.getTabs().addAll(modulesTab, webcastsTab);
 
@@ -215,15 +242,23 @@ public class GContentItem {
         window.setScene(scene);
     }
 
+
+
+
+
+
+
+
+    //Method ShowWindow for CourseButton
     public static void showWindow(Stage window, Course course) {
         window.setTitle("CodeCademy | Modules and Webcasts");
 
         DBContentItem dbContentItem = new DBContentItem();
-
+        DBProgression dbProgression = new DBProgression();
         List<Module> modules = new ArrayList<>();
         modules = dbContentItem.getModules(course);
 
-        Label label = new Label("hi");
+        
         BorderPane firstPage = new BorderPane();
         TableView<Module> mTableView = new TableView<>();
 
@@ -272,9 +307,12 @@ public class GContentItem {
             mTableView.getItems().add(Module);
         }
 
+        Label label = new Label("  Progression: ");
+        label.setFont(new Font("Arial", 23));   
 
-        // // Event on click
+        // // // Event on click
         // mTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        
         //     @Override
         //     public void handle(MouseEvent event) {
         //         List<Progression> progressions = dbProgression.getProgression(student, course);
@@ -286,7 +324,7 @@ public class GContentItem {
 
         //             for (int i = 0; i < progressions.size(); i++) {
         //                 if (selectedModule.getContentItemId() == progressions.get(i).getContentItem().getContentItemId()&& progressions.get(i).getStudent().getEmail() == student.getEmail())
-        //                 label.setText(progressions.get(i).getPercentage() + " Procent");
+        //                 label.setText("Progression: "+progressions.get(i).getPercentage() + " Procent");
         //             }
 
         //         }
@@ -349,7 +387,8 @@ public class GContentItem {
         for (Webcast webcast : webcasts) {
             wTableView.getItems().add(webcast);
         }
-
+        Label label2 = new Label("  Progression: ");
+        label2.setFont(new Font("Arial", 23));
         // Event on click
         // wTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
         //     @Override
@@ -395,11 +434,25 @@ public class GContentItem {
         Tab modulesTab = new Tab("Modules");
         firstPage.setCenter(mTableView);
         firstPage.setBottom(hBox);
-
         modulesTab.setContent(firstPage);
 
+        Button backButton2 = new Button("< Back");
+        backButton.setOnAction(e -> {
+            try {
+                GCourse.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
+        BorderPane secondPage = new BorderPane();
         Tab webcastsTab = new Tab("Webcasts");
-        webcastsTab.setContent(wTableView);
+        HBox hBox2 = new HBox();
+        hBox2.getChildren().addAll(backButton2, label2);
+        secondPage.setCenter(wTableView);
+        secondPage.setBottom(hBox2);
+
+        webcastsTab.setContent(secondPage);
 
         tabPane.getTabs().addAll(modulesTab, webcastsTab);
 
