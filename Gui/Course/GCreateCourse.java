@@ -38,7 +38,7 @@ public class GCreateCourse {
         layout.setCenter(mLayout);
 
         Label welcome = new Label("Create Course");
-        welcome.setFont(new Font("Arial", 45));
+        welcome.setFont(new Font("Arial", 30));
 
 
         //Course name
