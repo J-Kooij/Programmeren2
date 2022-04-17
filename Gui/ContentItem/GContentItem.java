@@ -302,31 +302,39 @@ public class GContentItem {
 
         TableColumn<Webcast, String> wColumn1 = new TableColumn<>("Title");
         wColumn1.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        wColumn1.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn1.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
 
         TableColumn<Webcast, String> wColumn2 = new TableColumn<>("Description");
         wColumn2.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        wColumn2.prefWidthProperty().bind(wTableView.widthProperty().divide(3.7));
+        wColumn2.prefWidthProperty().bind(wTableView.widthProperty().divide(4.9));
 
         TableColumn<Webcast, String> wColumn3 = new TableColumn<>("Publication Date");
         wColumn3.setCellValueFactory(new PropertyValueFactory<>("PublicationDate"));
-        wColumn3.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn3.prefWidthProperty().bind(wTableView.widthProperty().divide(9.5));
 
         TableColumn<Webcast, String> wColumn4 = new TableColumn<>("Status");
         wColumn4.setCellValueFactory(new PropertyValueFactory<>("Status"));
-        wColumn4.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+        wColumn4.prefWidthProperty().bind(wTableView.widthProperty().divide(12.5));
 
         TableColumn<Webcast, String> wColumn5 = new TableColumn<>("Serialnumber");
         wColumn5.setCellValueFactory(new PropertyValueFactory<>("ContentItemId"));
-        wColumn5.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+        wColumn5.prefWidthProperty().bind(wTableView.widthProperty().divide(12));
 
         TableColumn<Webcast, String> wColumn6 = new TableColumn<>("Speaker name");
         wColumn6.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getSpeakerName()));
-        wColumn6.prefWidthProperty().bind(wTableView.widthProperty().divide(8));
+        wColumn6.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
 
         TableColumn<Webcast, String> wColumn7 = new TableColumn<>("Organisation");
         wColumn7.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getSpeaker().getOrganisationOfSpeaker()));
-        wColumn7.prefWidthProperty().bind(wTableView.widthProperty().divide(7.5));
+        wColumn7.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
+
+        TableColumn<Webcast, String> wColumn8 = new TableColumn<>("Duration(min)");
+        wColumn8.setCellValueFactory(new PropertyValueFactory<>("lengthInMinute"));
+        wColumn8.prefWidthProperty().bind(wTableView.widthProperty().divide(10));
+
+        TableColumn<Webcast, String> wColumn9 = new TableColumn<>("Url");
+        wColumn9.setCellValueFactory(new PropertyValueFactory<>("url"));
+        wColumn9.prefWidthProperty().bind(wTableView.widthProperty().divide(9));
 
         wTableView.getColumns().add(wColumn1);
         wTableView.getColumns().add(wColumn2);
@@ -335,6 +343,8 @@ public class GContentItem {
         wTableView.getColumns().add(wColumn5);
         wTableView.getColumns().add(wColumn6);
         wTableView.getColumns().add(wColumn7);
+        wTableView.getColumns().add(wColumn8);
+        wTableView.getColumns().add(wColumn9);
 
         for (Webcast webcast : webcasts) {
             wTableView.getItems().add(webcast);
