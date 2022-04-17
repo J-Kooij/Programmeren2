@@ -6,11 +6,13 @@ public class Registration {
     private Date registrationDate;
     private Course course;
     private Student student;
+    private Integer registrationId;
 
-    public Registration(Date registrationDate, Course course, Student student) {
+    public Registration(Date registrationDate, Course course, Student student, Integer registrationId) {
         this.registrationDate = registrationDate;
         this.course = course;
         this.student = student;
+        this.registrationId = registrationId;
     }
 
     public Date getRegistrationDate() {
@@ -32,4 +34,7 @@ public class Registration {
         this.student = student;
     }
     
+    public Integer getRegistrationId() {
+        return registrationId;
+    }
 }
