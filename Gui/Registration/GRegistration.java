@@ -38,7 +38,7 @@ public class GRegistration {
         List<Registration> registrations = new ArrayList<>();
         registrations = dbRegister.getRegistrations(student);
         VBox vBox = new VBox();
-        Label title = new Label("Student: " + student.getName());
+        Label title = new Label("Student: "+student.getName());
         title.setPadding(new Insets(0, 0, 5, 0));
         vBox.setAlignment(Pos.CENTER);
         title.setStyle("-fx-font-weight: bold; -fx-font-size:25");

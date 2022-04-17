@@ -15,6 +15,12 @@ public class Registration {
         this.registrationId = registrationId;
     }
 
+    public Registration(Date registrationDate, Course course, Student student) {
+        this.registrationDate = registrationDate;
+        this.course = course;
+        this.student = student;
+    }
+
     public Date getRegistrationDate() {
         return registrationDate;
     }

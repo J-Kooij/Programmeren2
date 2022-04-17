@@ -2,16 +2,32 @@ package Programmeren2.Domain;
 
 import java.util.Date;
 
+
 public class Webcast extends ContentItem{
     private Speaker speaker;
-
-
+    private int lengthInMinute;
+    private String url;
+    
     public Webcast(int contentItemId, Date publicationDate, String title, String description, Status status,
-            Speaker speaker) {
+            Speaker speaker, int lengthInMinute, String url) {
         super(contentItemId, publicationDate, title, description, status);
         this.speaker = speaker;
+        this.lengthInMinute = lengthInMinute;
+        this.url = url;
     }
-    
+
+    public int getLengthInMinute(){
+        return this.lengthInMinute;
+    }
+    public int setLengthInMinute(int lengthInMinute){
+        return this.lengthInMinute = lengthInMinute;
+    }
+    public String getUrl(){
+        return this.url;
+    }
+    public String setUrl(String url){
+        return this.url = url;
+    }
     public int getContentItemId() {
         return contentItemId;
     }
@@ -72,5 +88,6 @@ public class Webcast extends ContentItem{
         // TODO Auto-generated method stub
         super.setTitle(title);
     }
+    
     
 }

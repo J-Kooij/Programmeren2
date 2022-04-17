@@ -19,15 +19,15 @@ public class DBRegister extends Database {
     // Input registration into database
     public void createRegistration(Registration registration) {
 
-        String query = "INSERT INTO Register VALUES(?, ?, ?, ?)";
+        String query = "INSERT INTO Register VALUES(?, ?, ?)";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
 
-            stmt.setDate(1, new java.sql.Date(registration.getRegistrationDate().getTime()));
+            stmt.setString(1, registration.getRegistrationDate().toString());
             stmt.setString(2, registration.getCourse().getCourseName());
             stmt.setString(3, registration.getStudent().getEmail());
-            stmt.setInt(4, registration.getRegistrationId());
 
             stmt.executeUpdate();
+            System.out.print("[DBRegister]: Successful created registration ");
         } catch (Exception e) {
             System.out.print("[DBRegister]: Error creating registration " + e.toString());
         }
@@ -60,8 +60,8 @@ public class DBRegister extends Database {
     public void editRegistration(Registration registration) {
         String query = "UPDATE Register SET RegistrationDate = ?, CourseName = ?, StudentEmail = ? WHERE RegistrationId = ? ";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
-            stmt.setString(2, registration.getRegistrationDate().toString());
-            stmt.setString(1, registration.getCourse().getCourseName());
+            stmt.setString(1, registration.getRegistrationDate().toString());
+            stmt.setString(2, registration.getCourse().getCourseName());
             stmt.setString(3, registration.getStudent().getEmail());
             stmt.setInt(4, registration.getRegistrationId());
 
@@ -73,7 +73,7 @@ public class DBRegister extends Database {
     }
 
     public void deleteRegistration(Integer registrationId) {
-        String query = "DELETE FROM Registration WHERE email = ? ";
+        String query = "DELETE FROM Register WHERE RegistrationId = ? ";
         try (PreparedStatement stmt = super.connection.prepareStatement(query)) {
 
             stmt.setInt(1, registrationId);
