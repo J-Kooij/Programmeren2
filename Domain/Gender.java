@@ -2,7 +2,7 @@ package Programmeren2.Domain;
 
 public enum Gender {
     MALE("Male"),
-    FEMALE("Woman"),
+    FEMALE("female"),
     NONE("None");
     private String value;
 
@@ -21,7 +21,7 @@ public enum Gender {
         if(value.equals("male")){
             return MALE;
         }
-        if(value.equals("woman")){
+        if(value.equals("female")){
             return FEMALE;
         }
         else {
