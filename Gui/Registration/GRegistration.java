@@ -145,21 +145,26 @@ public class GRegistration {
 
                     
                     TableView tableView = new TableView<>();
-                    TableColumn<Student, String> column1 = new TableColumn<>("Address");
-                    column1.setCellValueFactory(new PropertyValueFactory<>("Address"));
-                    column1.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+                    TableColumn<Student, String> column1 = new TableColumn<>("Name");
+                    column1.setCellValueFactory(new PropertyValueFactory<>("Name"));
+                    column1.prefWidthProperty().bind(tableView.widthProperty().divide(4));
+
+                    TableColumn<Student, String> column2 = new TableColumn<>("Address");
+                    column2.setCellValueFactory(new PropertyValueFactory<>("Address"));
+                    column2.prefWidthProperty().bind(tableView.widthProperty().divide(4));
             
-                    TableColumn<Student, String> column2 = new TableColumn<>("City");
-                    column2.setCellValueFactory(new PropertyValueFactory<>("City"));
-                    column2.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+                    TableColumn<Student, String> column3 = new TableColumn<>("City");
+                    column3.setCellValueFactory(new PropertyValueFactory<>("City"));
+                    column3.prefWidthProperty().bind(tableView.widthProperty().divide(4));
             
-                    TableColumn<Student, String> column3 = new TableColumn<>("Country");
-                    column3.setCellValueFactory(new PropertyValueFactory<>("Country"));
-                    column3.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+                    TableColumn<Student, String> column4 = new TableColumn<>("Country");
+                    column4.setCellValueFactory(new PropertyValueFactory<>("Country"));
+                    column4.prefWidthProperty().bind(tableView.widthProperty().divide(4));
 
                     tableView.getColumns().add(column1);
                     tableView.getColumns().add(column2);
                     tableView.getColumns().add(column3);
+                    tableView.getColumns().add(column4);
 
                     for (Student s : students) {
                         tableView.getItems().add(s);

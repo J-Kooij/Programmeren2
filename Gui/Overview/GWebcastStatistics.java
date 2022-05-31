@@ -5,8 +5,10 @@ import java.util.List;
 
 import Programmeren2.Database.DBProgression;
 import Programmeren2.Domain.Progression;
+import Programmeren2.Gui.Gui;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,6 +23,7 @@ public class GWebcastStatistics {
         Label statsTitle = new Label("The latest statistics: Top Three Webcasts");
         layout.setTop(statsTitle);
 
+        
         TableView<Progression> wTableView = new TableView<>();
 
         TableColumn<Progression, String> wColumn1 = new TableColumn<>("Title");
@@ -34,7 +37,7 @@ public class GWebcastStatistics {
 
         TableColumn<Progression, String> wColumn3 = new TableColumn<>("Publication Date");
         wColumn3.setCellValueFactory(
-                cell -> new SimpleStringProperty(cell.getValue().getContentItem().getDescription()));
+                cell -> new SimpleStringProperty(cell.getValue().getContentItem().getPublicationDate().toString()));
         wColumn3.prefWidthProperty().bind(wTableView.widthProperty().divide(4));
 
         TableColumn<Progression, String> wColumn4 = new TableColumn<>("Status");
@@ -60,7 +63,17 @@ public class GWebcastStatistics {
         } else {
             System.out.println("Error empty list");
         }
-
+        Button backButton = new Button("< Back");
+        backButton.setOnAction(e -> {
+            try {
+                Gui.showWindow(window);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            ;
+        });
+        backButton.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
+        layout.setBottom(backButton);
         layout.setCenter(wTableView);
         Scene scene = new Scene(layout, 550, 350);
         window.setScene(scene);

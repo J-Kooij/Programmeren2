@@ -109,8 +109,8 @@ public class DBProgression extends Database {
 
                 Progression progression = new Progression(webcast, percentage);
                 progressions.add(progression);
-                return progressions;
             }
+            return progressions;
         } catch (Exception e) {
             System.out.print("[DBProgression]: Error getting  : " + e.toString());
         }

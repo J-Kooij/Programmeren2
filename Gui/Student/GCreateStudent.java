@@ -7,6 +7,8 @@ import Programmeren2.Database.DBStudent;
 import Programmeren2.Domain.Gender;
 import Programmeren2.Domain.Student;
 import Programmeren2.Gui.Gui;
+import Programmeren2.Logic.Validation.MaiLValidation;
+import Programmeren2.Tests.EmailTests;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -79,11 +81,15 @@ public class GCreateStudent {
 
             LocalDate pickedDate = birthDatePicker.getValue();
             Date studentBirthDate =java.sql.Date.valueOf(pickedDate);
-
-            Student student = new Student(studentName, studentEmail, studentGender, studentBirthDate, studentAddress,
-                    studentCity, studentCountry);
-            dbStudent.createStudents(student);
-            GStudent.showWindow(window);
+           
+            if(MaiLValidation.validateMailAddress(studentEmail)){
+                Student student = new Student(studentName, studentEmail, studentGender, studentBirthDate, studentAddress,
+                studentCity, studentCountry);
+                dbStudent.createStudents(student);
+                GStudent.showWindow(window);
+            } else {
+                System.out.println("Mail Invalid");
+            }
         });
 
         Button backButton = new Button("< Back");

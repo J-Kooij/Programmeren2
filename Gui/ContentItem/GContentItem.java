@@ -215,7 +215,7 @@ public class GContentItem {
         modulesTab.setContent(firstPage);
 
         Button backButton2 = new Button("< Back");
-        backButton.setOnAction(e -> {
+        backButton2.setOnAction(e -> {
             try {
                 GCourse.showWindow(window);
             } catch (Exception e1) {
@@ -434,7 +434,8 @@ public class GContentItem {
         modulesTab.setContent(firstPage);
 
         Button backButton2 = new Button("< Back");
-        backButton.setOnAction(e -> {
+        backButton2.setStyle("-fx-background-color: linear-gradient(to bottom, #0495bd, #9CC0E1); -fx-text-fill: white;-fx-font-weight: bold");
+        backButton2.setOnAction(e -> {
             try {
                 GCourse.showWindow(window);
             } catch (Exception e1) {
